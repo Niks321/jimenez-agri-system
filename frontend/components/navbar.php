@@ -42,7 +42,6 @@ $assetBase = $assetBase ?? 'assets';
     <!-- Action Button / Link: LOGIN & Mobile Menu Button -->
     <div class="flex items-center gap-space-sm">
       <a class="inline-flex items-center gap-space-xs px-space-md lg:px-space-lg py-space-xs rounded-xl bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim transition-all font-label-lg text-xs md:text-sm shadow font-bold uppercase tracking-wider" href="<?= htmlspecialchars($loginUrl) ?>">
-        <span class="material-symbols-outlined text-base">lock</span>
         <span>LOGIN</span>
       </a>
       <!-- Mobile menu button -->
