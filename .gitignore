@@ -1,0 +1,45 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+credentials.json
+secrets.json
+
+# Composer dependencies
+/vendor/
+
+# Local IDE and operating-system files
+.idea/
+.vscode/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Runtime data and generated files
+/storage/backups/*
+/storage/cache/*
+/storage/exports/*
+/storage/logs/*
+/storage/reports/*
+/storage/temp/*
+/storage/uploads/*
+*.log
+*.tmp
+*.bak
+*.sql.gz
+*.zip
+
+# Local database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Keep runtime directories available after cloning
+!.gitkeep

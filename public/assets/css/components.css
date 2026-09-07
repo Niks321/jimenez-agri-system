@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Municipal Agriculture Office Jimenez - Component Stylesheet
+   Path: frontend/assets/css/components.css
+   ========================================================================== */
+
+/* Header & Announcement Styles */
+.announcement-badge {
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Photo & Avatar Containers (Ready for User Images) */
+.staff-avatar-wrapper {
+  position: relative;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.staff-avatar-wrapper:hover {
+  transform: scale(1.04);
+}
+
+.staff-avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f3ff;
+  color: #404942;
+  user-select: none;
+}
+
+/* Division Branch Accent Colors */
+.division-crops {
+  border-top-color: #00361c;
+}
+
+.division-fisheries {
+  border-top-color: #006e2d;
+}
+
+.division-livestock {
+  border-top-color: #6a3700;
+}
+
+/* Developer Quote Box */
+.developer-quote-card {
+  position: relative;
+  border-radius: 0.75rem;
+  background-color: #f0f3ff;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Gallery Photo Placeholder Container */
+.gallery-photo-box {
+  position: relative;
+  background: linear-gradient(135deg, #f0f3ff 0%, #dee8ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-photo-box:hover img {
+  transform: scale(1.06);
+}
+
+/* Form Controls */
+.form-input-custom {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input-custom:focus {
+  border-color: #00361c;
+  box-shadow: 0 0 0 3px rgba(0, 54, 28, 0.15);
+}
+
+/* Strategic Blueprint Carousel */
+.blueprint-slide {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blueprint-dot {
+  transition: width 0.3s ease, background-color 0.3s ease;
+}

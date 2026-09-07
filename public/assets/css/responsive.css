@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Municipal Agriculture Office Jimenez - Responsive Stylesheet
+   Path: frontend/assets/css/responsive.css
+   ========================================================================== */
+
+/* Mobile Breakpoints (< 768px) */
+@media (max-width: 767px) {
+  .hero-headline {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hierarchy-stem-horizontal,
+  .hierarchy-stem-vertical,
+  .hierarchy-node-drop {
+    display: none;
+  }
+}
+
+/* Tablet Breakpoints (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-headline {
+    font-size: 2.75rem;
+    line-height: 1.18;
+  }
+}
+
+/* Desktop Large (> 1024px) */
+@media (min-width: 1024px) {
+  .hero-headline {
+    font-size: 3.25rem;
+    line-height: 1.15;
+  }
+}
+
+/* Print Styles */
+@media print {
+  header,
+  #cookie-banner,
+  #contact form,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}

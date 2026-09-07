@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Municipal Agriculture Office Jimenez - Main Stylesheet
+   Path: frontend/assets/css/style.css
+   ========================================================================== */
+
+/* Base Reset & Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+main > :first-child {
+  margin-top: 0 !important;
+}
+
+main > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f3ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #99d4aa;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #316947;
+}
+
+/* Organizational Chart Tree Connectors */
+.hierarchy-stem-vertical {
+  width: 3px;
+  background: linear-gradient(to bottom, #00361c, #316947);
+  border-radius: 2px;
+}
+
+.hierarchy-stem-horizontal {
+  height: 3px;
+  background: linear-gradient(to right, #00361c, #316947, #00361c);
+  border-radius: 2px;
+}
+
+.hierarchy-node-drop {
+  width: 3px;
+  height: 24px;
+  background-color: #316947;
+  margin: 0 auto;
+}
+
+/* Custom Animation & Transition Classes */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -6px rgba(0, 54, 28, 0.12);
+}
+
+/* Text Selection */
+::selection {
+  background-color: #7ffc97;
+  color: #002109;
+}
