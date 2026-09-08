@@ -5,3 +5,7 @@
 5th version - Activated secure session and consent cookies, added HttpOnly/SameSite cookie handling, and replaced footer policy placeholders with Cookie Policy, Privacy Policy, Terms of Use, and Sitemap pages.
 6th version - Replaced policy-page navigation with responsive in-page popups for Cookie Policy, Privacy Policy, Terms of Use, and Sitemap, with staff-focused legal and security context based on the provided reference.
 7th version - Added professional Accept/Decline cookie consent with persistent consent choice and fixed policy popups with native-dialog and browser fallback support.
+8th version - Added the initial MySQL users schema, phpMyAdmin setup script, securely hashed demo user account, individual user seeder, and database setup documentation.
+9th version - Removed the public all-in-one database setup and demo-user seed to prevent a known account from being deployed accidentally; kept the reusable schema migration and documented local database setup guidance.
+10th version - Added the complete ordered database foundation for users, roles, permissions, agriculture, fisheries, livestock, permits, insurance, pricing, notifications, audit logs, reference seeders, and reporting views; validated the full import against local MariaDB.
+11th version - Expanded database ignore rules for local database folders, exports, dumps, and compressed local SQL files while keeping public migrations, seeders, and views trackable.

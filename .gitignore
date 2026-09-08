@@ -40,6 +40,11 @@ Thumbs.db
 *.sqlite
 *.sqlite3
 *.db
+/database/local/
+/database/dumps/
+/database/*-local.sql
+/database/*-local.sql.gz
+/database/*.dump.sql
 
 # Keep runtime directories available after cloning
 !.gitkeep

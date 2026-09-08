@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS permits (
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	permit_number VARCHAR(60) NOT NULL,
+	permit_type VARCHAR(100) NOT NULL,
+	applicant_name VARCHAR(200) NOT NULL,
+	farmer_id BIGINT UNSIGNED NULL,
+	fisherman_id BIGINT UNSIGNED NULL,
+	issued_date DATE NULL,
+	expiry_date DATE NULL,
+	status ENUM('pending', 'approved', 'rejected', 'expired', 'cancelled') NOT NULL DEFAULT 'pending',
+	remarks TEXT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	UNIQUE KEY uq_permits_number (permit_number),
+	KEY idx_permits_farmer (farmer_id),
+	KEY idx_permits_fisherman (fisherman_id),
+	KEY idx_permits_expiry (expiry_date),
+	CONSTRAINT fk_permits_farmer FOREIGN KEY (farmer_id) REFERENCES farmers (id) ON DELETE SET NULL,
+	CONSTRAINT fk_permits_fisherman FOREIGN KEY (fisherman_id) REFERENCES fishermen (id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS fish_species (
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	common_name VARCHAR(150) NOT NULL,
+	scientific_name VARCHAR(150) NULL,
+	category VARCHAR(100) NULL,
+	status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	KEY idx_fish_species_common_name (common_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

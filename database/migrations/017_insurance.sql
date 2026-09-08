@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS insurance (
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	policy_number VARCHAR(80) NOT NULL,
+	provider VARCHAR(150) NOT NULL,
+	insured_name VARCHAR(200) NOT NULL,
+	farmer_id BIGINT UNSIGNED NULL,
+	fisherman_id BIGINT UNSIGNED NULL,
+	coverage_type VARCHAR(100) NULL,
+	coverage_amount DECIMAL(14,2) NULL,
+	premium_amount DECIMAL(14,2) NULL,
+	start_date DATE NULL,
+	end_date DATE NULL,
+	status ENUM('pending', 'active', 'expired', 'cancelled') NOT NULL DEFAULT 'pending',
+	notes TEXT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	UNIQUE KEY uq_insurance_policy (policy_number),
+	KEY idx_insurance_farmer (farmer_id),
+	KEY idx_insurance_fisherman (fisherman_id),
+	CONSTRAINT fk_insurance_farmer FOREIGN KEY (farmer_id) REFERENCES farmers (id) ON DELETE SET NULL,
+	CONSTRAINT fk_insurance_fisherman FOREIGN KEY (fisherman_id) REFERENCES fishermen (id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

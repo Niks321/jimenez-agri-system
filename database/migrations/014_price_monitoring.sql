@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS price_monitoring (
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	product_id BIGINT UNSIGNED NOT NULL,
+	recorded_by BIGINT UNSIGNED NULL,
+	market_name VARCHAR(150) NULL,
+	location VARCHAR(150) NULL,
+	recorded_date DATE NOT NULL,
+	minimum_price DECIMAL(12,2) NULL,
+	maximum_price DECIMAL(12,2) NULL,
+	average_price DECIMAL(12,2) NOT NULL,
+	source VARCHAR(150) NULL,
+	notes TEXT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	KEY idx_price_monitoring_product (product_id),
+	KEY idx_price_monitoring_date (recorded_date),
+	CONSTRAINT fk_price_monitoring_product FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE RESTRICT,
+	CONSTRAINT fk_price_monitoring_user FOREIGN KEY (recorded_by) REFERENCES users (id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS crop_cycles (
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	farmer_id BIGINT UNSIGNED NOT NULL,
+	crop_id BIGINT UNSIGNED NOT NULL,
+	farm_location VARCHAR(255) NULL,
+	area_hectares DECIMAL(10,2) NULL,
+	planting_date DATE NULL,
+	expected_harvest_date DATE NULL,
+	harvest_date DATE NULL,
+	expected_yield DECIMAL(12,2) NULL,
+	actual_yield DECIMAL(12,2) NULL,
+	status ENUM('planned', 'growing', 'harvested', 'cancelled') NOT NULL DEFAULT 'planned',
+	notes TEXT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	KEY idx_crop_cycles_farmer (farmer_id),
+	KEY idx_crop_cycles_crop (crop_id),
+	CONSTRAINT fk_crop_cycles_farmer FOREIGN KEY (farmer_id) REFERENCES farmers (id) ON DELETE RESTRICT,
+	CONSTRAINT fk_crop_cycles_crop FOREIGN KEY (crop_id) REFERENCES crops (id) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
