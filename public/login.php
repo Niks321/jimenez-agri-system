@@ -2,6 +2,16 @@
 /**
  * Municipal Agriculture Office Jimenez - Login Page
  */
+$loginError = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $isNotRobot = !empty($_POST['anti_bot']) && $_POST['anti_bot'] === 'on';
+    $honeypot = trim((string)($_POST['website'] ?? ''));
+
+    if (!$isNotRobot || $honeypot !== '') {
+        $loginError = 'Please confirm that you are not a robot before signing in.';
+    }
+}
+
 $pageTitle = 'Login - Municipal Agriculture Office Jimenez';
 $pageDescription = 'Sign in to the Municipal Agriculture Office Jimenez information system.';
 $assetBase = 'assets';
@@ -39,7 +49,7 @@ require_once __DIR__ . '/../frontend/components/header.php';
 							<p class="font-body-sm text-xs text-on-surface-variant leading-relaxed"><strong class="text-on-surface">Notice:</strong> This system is for official municipal business. Activity may be recorded for security and accountability.</p>
 						</div>
 
-						<form class="space-y-space-sm" method="post" action="">
+<form class="space-y-space-sm" method="post" action="" id="login-form" novalidate>
 							<div>
 								<label class="block font-label-lg text-sm font-semibold text-on-surface mb-2" for="email">Email address</label>
 								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="email" name="email" type="email" autocomplete="email" required>
@@ -53,12 +63,33 @@ require_once __DIR__ . '/../frontend/components/header.php';
 								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="password" name="password" type="password" autocomplete="current-password" required>
 							</div>
 
+							<div class="hidden" aria-hidden="true">
+								<label for="website">Leave this blank</label>
+								<input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+							</div>
+
+							<div class="rounded-lg border border-outline-variant bg-surface-container-low p-3">
+								<label class="flex items-start gap-3 text-sm text-on-surface-variant cursor-pointer" for="anti_bot">
+									<input id="anti_bot" name="anti_bot" type="checkbox" class="mt-1 h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" required>
+									<span>
+										<strong class="text-on-surface">I am not a robot</strong>
+										<span class="mt-1 block text-xs">Please confirm you are human before continuing.</span>
+									</span>
+								</label>
+							</div>
+
 							<label class="flex items-center gap-2 text-sm text-on-surface-variant">
 								<input class="rounded border-outline-variant text-primary focus:ring-primary" name="remember" type="checkbox">
 								<span>Remember me</span>
 							</label>
 
-										<button class="w-full rounded-lg bg-primary text-on-primary px-space-lg py-space-sm font-label-lg text-sm font-bold hover:bg-primary-container transition-colors" type="submit">Sign in securely</button>
+							<?php if ($loginError !== ''): ?>
+								<div class="rounded-lg border border-error bg-error-container/30 px-3 py-2 text-sm text-on-error-container" role="alert">
+									<?= htmlspecialchars($loginError, ENT_QUOTES, 'UTF-8') ?>
+								</div>
+							<?php endif; ?>
+
+							<button class="w-full rounded-lg bg-primary text-on-primary px-space-lg py-space-sm font-label-lg text-sm font-bold hover:bg-primary-container transition-colors disabled:opacity-60 disabled:cursor-not-allowed" id="login-submit" type="submit">Sign in securely</button>
 						</form>
 
 						<p class="text-center mt-space-lg text-sm text-on-surface-variant">
