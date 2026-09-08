@@ -20,7 +20,7 @@ require_once __DIR__ . '/../frontend/components/header.php';
 					<span class="block font-label-sm text-[11px] text-emerald-200 font-semibold tracking-wider uppercase">Municipality of Jimenez, Misamis Occidental</span>
 				</div>
 			</a>
-			<a class="font-label-lg text-xs sm:text-sm font-bold text-secondary-fixed hover:text-white transition-colors" href="index.php">Public Portal</a>
+			<a class="inline-flex items-center gap-space-xs px-space-md lg:px-space-lg py-space-xs rounded-xl bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim transition-all font-label-lg text-xs sm:text-sm shadow font-bold uppercase tracking-wider" href="index.php">Public Portal</a>
 		</div>
 	</header>
 
