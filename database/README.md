@@ -10,6 +10,11 @@ a public clone from automatically receiving an account that could be used agains
 deployed database. Create local demonstration users manually, or generate them from
 a private deployment process, and disable them before production use.
 
+For this local XAMPP workspace, run `database/local/demo-users.sql` after importing
+the migrations. It creates two local accounts: `admin@example.com` / `admin123` for
+the administrator dashboard, and `personnel@example.com` / `personnel123` for the
+personnel dashboard. The local file is ignored by Git and must never be committed.
+
 After the migrations, the files under `database/seeders/` add non-sensitive reference
 data. The files under `database/views/` create reporting views. The PHP models and
 services still need to be implemented against this schema.

@@ -9,3 +9,27 @@
 9th version - Removed the public all-in-one database setup and demo-user seed to prevent a known account from being deployed accidentally; kept the reusable schema migration and documented local database setup guidance.
 10th version - Added the complete ordered database foundation for users, roles, permissions, agriculture, fisheries, livestock, permits, insurance, pricing, notifications, audit logs, reference seeders, and reporting views; validated the full import against local MariaDB.
 11th version - Expanded database ignore rules for local database folders, exports, dumps, and compressed local SQL files while keeping public migrations, seeders, and views trackable.
+12th version - Connected the login form to MariaDB with prepared statements, password hash verification, CSRF validation, authenticated session state, last-login tracking, database configuration, and post-login redirect handling.
+13th version - Finalized the database-backed login integration, cleared editor diagnostics for dynamically loaded security classes, and validated the demo login through the live XAMPP site.
+14th version - Refactored the completed authentication path to use injected OOP services and controllers, including database access, password hashing, input sanitization, CSRF validation, Turnstile verification, and login request handling.
+15th version - Added separate local administrator and personnel demo accounts, role-based dashboard redirects, server-side role middleware, and isolated admin/personnel dashboard access.
+16th version - Added the protected personnel navigation and data-entry monitoring workflows for farmers, fishery catch, livestock, vegetables, real-time prices, and generated monitoring reports.
+17th version - Replaced the personnel landing page with a data-driven analytics dashboard containing KPI summaries, price and catch trends, livestock and barangay comparisons, and latest price activity.
+18th version - Moved personnel navigation to a responsive left sidebar and centralized the personnel sign-out action in a shared top header across all personnel pages.
+19th version - Added a responsive collapsible personnel sidebar with mobile overlay, outside-click and Escape handling, desktop content/footer offsets, and resize-safe navigation behavior to prevent overlap.
+20th version - Added a unified personnel sidebar toggle for desktop and mobile, allowing the navigation to be hidden or restored while automatically reclaiming or reserving header, content, and footer space.
+21st version - Fixed desktop sidebar hiding by overriding the responsive display utility when the navigation is collapsed.
+22nd version - Raised the personnel header above the mobile sidebar overlay so the same toggle button can both open and close the navigation without being blocked.
+23rd version - Moved the primary personnel navigation toggle inside the sidebar and added a small header reopen control for restoring navigation after it is hidden.
+24th version - Updated the application asset cache version so browsers load the corrected in-sidebar navigation toggle behavior.
+25th version - Fixed mobile drawer layering and resize state so the in-sidebar toggle remains clickable and the overlay stays synchronized across desktop and mobile transitions.
+26th version - Constrained the personnel shell to the viewport width, prevented horizontal swipe overflow, and corrected header, content, and footer sizing beside the fixed sidebar.
+27th version - Removed the remaining right-side layout gap, centered personnel header titles, and moved the hidden-sidebar reopen control to the left edge.
+28th version - Reserved responsive header space for personnel actions so centered titles cannot overlap the user identity or sign-out controls.
+29th version - Fixed hidden-sidebar viewport sizing specificity, removed the remaining right-side white strip, and tightened responsive title space around header actions.
+30th version - Moved the hidden-sidebar reopen control outside the right header action group so it stays fixed on the left edge as intended.
+31st version - Increased responsive title clearance so centered personnel titles remain separated from the account and sign-out controls.
+32nd version - Split personnel header title sizing by tablet and desktop breakpoints so responsive titles remain readable at medium widths.
+33rd version - Restored vertical page scrolling while the personnel navigation drawer is open, while continuing to prevent horizontal overflow.
+34th version - Added the personnel insurance entry module with policy tracking, coverage fields, active records display, and navigation integration for the agriculture and fisheries insurance workflows.
+35th version - Added local insurance sample SQL data and tightened database ignore rules so private MariaDB import files stay out of Git while keeping the project schema and import structure intact.

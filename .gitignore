@@ -45,6 +45,7 @@ Thumbs.db
 /database/*-local.sql
 /database/*-local.sql.gz
 /database/*.dump.sql
+/database/local/*.sql
 
 # Keep runtime directories available after cloning
 !.gitkeep

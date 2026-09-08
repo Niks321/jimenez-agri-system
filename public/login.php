@@ -2,28 +2,32 @@
 /**
  * Municipal Agriculture Office Jimenez - Login Page
  */
-$turnstileClass = __DIR__ . '/../backend/security/Turnstile.php';
-require_once $turnstileClass;
-require_once __DIR__ . '/../backend/security/InputSanitizer.php';
-require_once __DIR__ . '/../backend/security/SessionSecurity.php';
+require_once __DIR__ . '/../backend/controllers/AuthController.php';
+require_once __DIR__ . '/../backend/core/Database.php';
+require_once __DIR__ . '/../backend/security/PasswordHasher.php';
+$sessionSecurity = require_once __DIR__ . '/../backend/security/SessionSecurity.php';
 call_user_func(['SessionSecurity', 'start']);
 call_user_func(['SessionSecurity', 'preventCaching']);
 $turnstileConfig = require __DIR__ . '/../config/security.php';
 $turnstileConfigured = $turnstileConfig['turnstile_site_key'] !== '' && $turnstileConfig['turnstile_secret_key'] !== '';
+$authController = new AuthController(
+	new AuthService(new Database(), new PasswordHasher()),
+	new InputSanitizer(),
+	new Csrf(),
+	new Turnstile()
+);
 $loginError = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$email = call_user_func(['InputSanitizer', 'email'], $_POST['email'] ?? null);
-	$password = call_user_func(['InputSanitizer', 'password'], $_POST['password'] ?? null);
-	$turnstileProof = $turnstileConfigured
-		&& Turnstile::verify((string) ($_POST['cf-turnstile-response'] ?? ''));
-	$localHumanCheck = !$turnstileConfigured
-		&& !empty($_POST['anti_bot'])
-		&& $_POST['anti_bot'] === 'on';
-	$honeypot = call_user_func(['InputSanitizer', 'honeypot'], $_POST['website'] ?? null);
-
-	if ($email === '' || $password === '' || ((!$turnstileProof && !$localHumanCheck) || $honeypot !== '')) {
-		$loginError = 'Please complete the human verification before signing in.';
-    }
+	try {
+		$loginError = $authController->login($_POST, $turnstileConfigured) ?? '';
+		if ($loginError === '') {
+			header('Location: ' . $authController->dashboardPath() . '?logged_in=1', true, 303);
+			exit;
+		}
+	} catch (Throwable $exception) {
+		error_log('Login database error: ' . $exception->getMessage());
+		$loginError = 'Sign-in is temporarily unavailable. Please try again later.';
+	}
 }
 
 $pageTitle = 'Login - Municipal Agriculture Office Jimenez';
@@ -64,6 +68,7 @@ require_once __DIR__ . '/../frontend/components/header.php';
 						</div>
 
 						<form class="space-y-space-sm" method="post" action="" id="login-form" novalidate>
+							<input type="hidden" name="_csrf_token" value="<?= htmlspecialchars((new Csrf())->token(), ENT_QUOTES, 'UTF-8') ?>">
 							<div>
 								<label class="block font-label-lg text-sm font-semibold text-on-surface mb-2" for="email">Email address</label>
 								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="email" name="email" type="email" autocomplete="off" required>
@@ -84,7 +89,7 @@ require_once __DIR__ . '/../frontend/components/header.php';
 
 							<div class="rounded-lg border border-outline-variant bg-surface-container-low p-3">
 								<?php if ($turnstileConfigured): ?>
-									<div class="cf-turnstile" data-sitekey="<?= htmlspecialchars(Turnstile::siteKey(), ENT_QUOTES, 'UTF-8') ?>" data-theme="light" data-size="normal" data-appearance="always" data-execution="render" data-action="login"></div>
+									<div class="cf-turnstile" data-sitekey="<?= htmlspecialchars((new Turnstile())->siteKey(), ENT_QUOTES, 'UTF-8') ?>" data-theme="light" data-size="normal" data-appearance="always" data-execution="render" data-action="login"></div>
 								<?php else: ?>
 									<label class="flex items-start gap-3 text-sm text-on-surface-variant cursor-pointer" for="anti_bot">
 										<input id="anti_bot" name="anti_bot" type="checkbox" value="on" class="mt-1 h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" required>

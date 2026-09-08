@@ -171,7 +171,8 @@ $assetBase = $assetBase ?? 'assets';
     }
 
     body.policy-modal-open {
-      overflow: hidden;
+      overflow-x: hidden !important;
+      overflow-y: visible !important;
     }
 
     .policy-modal::backdrop {
@@ -302,6 +303,6 @@ $assetBase = $assetBase ?? 'assets';
   </style>
 
   <!-- External Application Logic Script -->
-  <script src="<?= $assetBase ?>/js/app.js?v=7"></script>
+  <script src="<?= $assetBase ?>/js/app.js?v=16"></script>
 </body>
 </html>

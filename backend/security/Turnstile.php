@@ -4,13 +4,13 @@ final class Turnstile
 {
     private const VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
-    public static function siteKey(): string
+    public function siteKey(): string
     {
         $config = require __DIR__ . '/../../config/security.php';
         return (string) $config['turnstile_site_key'];
     }
 
-    public static function verify(string $token): bool
+    public function verify(string $token): bool
     {
         $config = require __DIR__ . '/../../config/security.php';
         $secret = (string) $config['turnstile_secret_key'];
