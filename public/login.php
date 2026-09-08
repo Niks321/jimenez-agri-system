@@ -2,13 +2,27 @@
 /**
  * Municipal Agriculture Office Jimenez - Login Page
  */
+$turnstileClass = __DIR__ . '/../backend/security/Turnstile.php';
+require_once $turnstileClass;
+require_once __DIR__ . '/../backend/security/InputSanitizer.php';
+require_once __DIR__ . '/../backend/security/SessionSecurity.php';
+call_user_func(['SessionSecurity', 'start']);
+call_user_func(['SessionSecurity', 'preventCaching']);
+$turnstileConfig = require __DIR__ . '/../config/security.php';
+$turnstileConfigured = $turnstileConfig['turnstile_site_key'] !== '' && $turnstileConfig['turnstile_secret_key'] !== '';
 $loginError = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $isNotRobot = !empty($_POST['anti_bot']) && $_POST['anti_bot'] === 'on';
-    $honeypot = trim((string)($_POST['website'] ?? ''));
+	$email = call_user_func(['InputSanitizer', 'email'], $_POST['email'] ?? null);
+	$password = call_user_func(['InputSanitizer', 'password'], $_POST['password'] ?? null);
+	$turnstileProof = $turnstileConfigured
+		&& Turnstile::verify((string) ($_POST['cf-turnstile-response'] ?? ''));
+	$localHumanCheck = !$turnstileConfigured
+		&& !empty($_POST['anti_bot'])
+		&& $_POST['anti_bot'] === 'on';
+	$honeypot = call_user_func(['InputSanitizer', 'honeypot'], $_POST['website'] ?? null);
 
-    if (!$isNotRobot || $honeypot !== '') {
-        $loginError = 'Please confirm that you are not a robot before signing in.';
+	if ($email === '' || $password === '' || ((!$turnstileProof && !$localHumanCheck) || $honeypot !== '')) {
+		$loginError = 'Please complete the human verification before signing in.';
     }
 }
 
@@ -49,10 +63,10 @@ require_once __DIR__ . '/../frontend/components/header.php';
 							<p class="font-body-sm text-xs text-on-surface-variant leading-relaxed"><strong class="text-on-surface">Notice:</strong> This system is for official municipal business. Activity may be recorded for security and accountability.</p>
 						</div>
 
-<form class="space-y-space-sm" method="post" action="" id="login-form" novalidate>
+						<form class="space-y-space-sm" method="post" action="" id="login-form" novalidate>
 							<div>
 								<label class="block font-label-lg text-sm font-semibold text-on-surface mb-2" for="email">Email address</label>
-								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="email" name="email" type="email" autocomplete="email" required>
+								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="email" name="email" type="email" autocomplete="off" required>
 							</div>
 
 							<div>
@@ -60,7 +74,7 @@ require_once __DIR__ . '/../frontend/components/header.php';
 									<label class="font-label-lg text-sm font-semibold text-on-surface" for="password">Password</label>
 									<a class="font-label-sm text-xs text-primary font-semibold hover:underline" href="#">Forgot password?</a>
 								</div>
-								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="password" name="password" type="password" autocomplete="current-password" required>
+								<input class="form-input-custom w-full bg-surface-container-lowest rounded-lg p-3 text-sm text-on-surface border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" id="password" name="password" type="password" autocomplete="off" required>
 							</div>
 
 							<div class="hidden" aria-hidden="true">
@@ -69,13 +83,17 @@ require_once __DIR__ . '/../frontend/components/header.php';
 							</div>
 
 							<div class="rounded-lg border border-outline-variant bg-surface-container-low p-3">
-								<label class="flex items-start gap-3 text-sm text-on-surface-variant cursor-pointer" for="anti_bot">
-									<input id="anti_bot" name="anti_bot" type="checkbox" class="mt-1 h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" required>
-									<span>
-										<strong class="text-on-surface">I am not a robot</strong>
-										<span class="mt-1 block text-xs">Please confirm you are human before continuing.</span>
-									</span>
-								</label>
+								<?php if ($turnstileConfigured): ?>
+									<div class="cf-turnstile" data-sitekey="<?= htmlspecialchars(Turnstile::siteKey(), ENT_QUOTES, 'UTF-8') ?>" data-theme="light" data-size="normal" data-appearance="always" data-execution="render" data-action="login"></div>
+								<?php else: ?>
+									<label class="flex items-start gap-3 text-sm text-on-surface-variant cursor-pointer" for="anti_bot">
+										<input id="anti_bot" name="anti_bot" type="checkbox" value="on" class="mt-1 h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" required>
+										<span>
+											<strong class="text-on-surface">I am not a robot</strong>
+											<span class="mt-1 block text-xs">Local development verification.</span>
+										</span>
+									</label>
+								<?php endif; ?>
 							</div>
 
 							<label class="flex items-center gap-2 text-sm text-on-surface-variant">
@@ -182,6 +200,7 @@ require_once __DIR__ . '/../frontend/components/header.php';
 }
 </style>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 	const carousel = document.getElementById('login-carousel');

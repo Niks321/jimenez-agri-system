@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initCookieBanner();
+  initPolicyModals();
   initGalleryFilter();
   initScrollSpy();
   initContactForm();
@@ -51,6 +52,49 @@ function initMobileMenu() {
   });
 }
 
+function initPolicyModals() {
+  const openers = document.querySelectorAll('[data-policy-open]');
+  const modals = document.querySelectorAll('.policy-modal');
+  if (!openers.length || !modals.length) return;
+
+  let lastTrigger = null;
+  openers.forEach((opener) => {
+    opener.addEventListener('click', (event) => {
+      const modal = document.getElementById(opener.dataset.policyOpen);
+      if (!modal) return;
+      event.preventDefault();
+      lastTrigger = opener;
+      if (typeof modal.showModal === 'function') {
+        modal.showModal();
+      } else {
+        modal.classList.add('is-open');
+        document.body.classList.add('policy-modal-open');
+      }
+    });
+  });
+
+  modals.forEach((modal) => {
+    const close = () => {
+      if (typeof modal.close === 'function' && modal.open) {
+        modal.close();
+      } else {
+        modal.classList.remove('is-open');
+        document.body.classList.remove('policy-modal-open');
+      }
+      if (lastTrigger) lastTrigger.focus();
+    };
+
+    modal.querySelectorAll('[data-policy-close]').forEach((button) => button.addEventListener('click', close));
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+    modal.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      close();
+    });
+  });
+}
+
 function closeMobileMenu() {
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');
@@ -65,23 +109,24 @@ function closeMobileMenu() {
  */
 function initCookieBanner() {
   const banner = document.getElementById('cookie-banner');
-  const acceptBtn = document.getElementById('cookie-accept-btn');
+  const choiceButtons = banner ? banner.querySelectorAll('[data-cookie-choice]') : [];
 
   if (!banner) return;
 
-  const cookieConsent = localStorage.getItem('mao_cookie_consent');
-  if (cookieConsent === 'accepted') {
+  const cookieConsent = document.cookie.split('; ').find((row) => row.startsWith('mao_cookie_consent='));
+  if (cookieConsent && ['accepted', 'declined'].includes(cookieConsent.split('=')[1])) {
     banner.style.display = 'none';
   } else {
     banner.style.display = 'block';
   }
 
-  if (acceptBtn) {
-    acceptBtn.addEventListener('click', () => {
-      localStorage.setItem('mao_cookie_consent', 'accepted');
+  choiceButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.cookieChoice;
+      document.cookie = `mao_cookie_consent=${choice}; Max-Age=31536000; Path=/; SameSite=Lax`;
       banner.style.display = 'none';
     });
-  }
+  });
 }
 
 /**

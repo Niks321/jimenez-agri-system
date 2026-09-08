@@ -6,6 +6,12 @@
 $pageTitle = $pageTitle ?? 'Municipal Agriculture Office - Jimenez, Misamis Occidental';
 $pageDescription = $pageDescription ?? 'Official Portal of the Municipal Agriculture Office of Jimenez, Misamis Occidental. Empowering farmers, fisherfolk, and agricultural entrepreneurs.';
 $assetBase = $assetBase ?? 'assets';
+$sessionSecurity = __DIR__ . '/../../backend/security/SessionSecurity.php';
+if (is_file($sessionSecurity)) {
+  require_once $sessionSecurity;
+  call_user_func(['SessionSecurity', 'start']);
+  call_user_func(['SessionSecurity', 'preventCaching']);
+}
 ?>
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
