@@ -66,6 +66,65 @@ final class FisheryRepository
         }
     }
 
+    public function applicationForFisherman(int $fishermanId): ?array
+    {
+        $statement = $this->database->connection()->prepare(
+            'SELECT f.rsbsa_number, f.registration_number AS fisher_registration_number, f.first_name, f.middle_name, f.last_name, f.address AS fisherman_address, f.barangay, '
+            . 'a.* FROM fishermen f LEFT JOIN fishery_applications a ON a.id = (SELECT MAX(latest.id) FROM fishery_applications latest WHERE latest.fisherman_id = f.id) '
+            . 'WHERE f.id = :fisherman_id LIMIT 1'
+        );
+        $statement->execute(['fisherman_id' => $fishermanId]);
+        $application = $statement->fetch();
+        return $application ?: null;
+    }
+
+    public function updateApplication(int $fishermanId, array $data): void
+    {
+        $connection = $this->database->connection();
+        $connection->beginTransaction();
+        try {
+            $fisherman = $connection->prepare(
+                'UPDATE fishermen SET rsbsa_number = :rsbsa_number, registration_number = :registration_number, first_name = :first_name, middle_name = :middle_name, last_name = :last_name, phone = :phone, address = :address, barangay = :barangay WHERE id = :fisherman_id'
+            );
+            $fisherman->execute([
+                'fisherman_id' => $fishermanId,
+                'rsbsa_number' => trim((string) ($data['rsbsa_number'] ?? '')) ?: null,
+                'registration_number' => trim((string) ($data['registration_number'] ?? '')) ?: null,
+                'first_name' => trim((string) $data['applicant_first_name']),
+                'middle_name' => trim((string) ($data['applicant_middle_name'] ?? '')) ?: null,
+                'last_name' => trim((string) $data['applicant_last_name']),
+                'phone' => trim((string) ($data['contact_number'] ?? '')) ?: null,
+                'address' => trim((string) ($data['address'] ?? '')) ?: null,
+                'barangay' => trim((string) ($data['barangay'] ?? '')) ?: null,
+            ]);
+            $fields = ['applicant_last_name', 'applicant_first_name', 'applicant_middle_name', 'fishermen_association', 'address', 'spouse_name', 'contact_number', 'sex', 'civil_status', 'beneficiary_name', 'beneficiary_relation', 'boat_type', 'boat_material', 'motor_number', 'chassis_number', 'usage_description', 'length_meters', 'breadth_meters', 'depth_meters', 'gross_tonnage', 'boat_age_years', 'boat_color', 'registration_number', 'or_number', 'or_date', 'location_of_property', 'desired_sum_insured', 'cover_from', 'cover_to', 'mortgage_to', 'mortgage_branch', 'mortgage_address', 'reviewed_by', 'application_date'];
+            $values = ['fisherman_id' => $fishermanId, 'application_date' => $data['application_date'] ?: date('Y-m-d')];
+            foreach ($fields as $field) {
+                if (!array_key_exists($field, $values)) {
+                    $values[$field] = is_string($data[$field] ?? null) ? trim($data[$field]) ?: null : ($data[$field] ?? null);
+                }
+            }
+            $latest = $connection->prepare('SELECT id FROM fishery_applications WHERE fisherman_id = :fisherman_id ORDER BY id DESC LIMIT 1');
+            $latest->execute(['fisherman_id' => $fishermanId]);
+            $applicationId = $latest->fetchColumn();
+            if ($applicationId) {
+                $assignments = implode(', ', array_map(static fn (string $field): string => "{$field} = :{$field}", $fields));
+                $statement = $connection->prepare("UPDATE fishery_applications SET {$assignments} WHERE id = :application_id");
+                $values['application_id'] = $applicationId;
+                $statement->execute($values);
+            } else {
+                $columns = implode(', ', array_merge(['fisherman_id'], $fields));
+                $placeholders = ':' . implode(', :', array_merge(['fisherman_id'], $fields));
+                $statement = $connection->prepare("INSERT INTO fishery_applications ($columns) VALUES ($placeholders)");
+                $statement->execute($values);
+            }
+            $connection->commit();
+        } catch (Throwable $exception) {
+            $connection->rollBack();
+            throw $exception;
+        }
+    }
+
     public function deleteFisherman(int $fishermanId): void
     {
         if ($fishermanId < 1) {

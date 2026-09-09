@@ -10,7 +10,17 @@ final class FisheryService
 
     public function saveApplication(array $data): void
     {
+        $fishermanId = (int) ($data['fisherman_id'] ?? 0);
+        if ($fishermanId > 0) {
+            $this->repository->updateApplication($fishermanId, $data);
+            return;
+        }
         $this->repository->createApplication($data);
+    }
+
+    public function applicationForFisherman(int $fishermanId): ?array
+    {
+        return $this->repository->applicationForFisherman($fishermanId);
     }
 
     public function saveCatch(array $data): void

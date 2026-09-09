@@ -73,6 +73,11 @@ final class FisheryController
         return $this->service->fishermen();
     }
 
+    public function applicationForFisherman(int $fishermanId): ?array
+    {
+        return $this->service->applicationForFisherman($fishermanId);
+    }
+
     public function boats(): array
     {
         return $this->service->boats();
