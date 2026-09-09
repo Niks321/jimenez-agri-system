@@ -55,3 +55,28 @@
     border: 1px solid #ddd !important;
   }
 }
+
+html,
+body {
+  overflow-x: visible !important;
+  overflow-y: auto !important;
+}
+
+body {
+  overscroll-behavior-y: auto;
+}
+
+@media (min-width: 1024px) {
+  html,
+  body {
+    overflow-x: visible !important;
+    overflow-y: auto !important;
+  }
+}
+
+html,
+body {
+  overflow: visible !important;
+  overflow-y: auto !important;
+}
+

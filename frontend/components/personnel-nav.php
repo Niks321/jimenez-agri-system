@@ -1,5 +1,7 @@
 <?php
+require_once __DIR__ . '/../../backend/controllers/FisheryController.php';
 $activePage = $activePage ?? '';
+$fisherySection = FisheryController::validSection($_GET['section'] ?? 'active');
 $navItems = [
     'dashboard' => ['Personnel Home', 'personnel-dashboard.php', 'dashboard'],
     'farmers' => ['Farmers', 'personnel-farmers.php', 'groups'],
@@ -31,6 +33,13 @@ $navItems = [
                 <span class="material-symbols-outlined text-base"><?= htmlspecialchars($icon, ENT_QUOTES, 'UTF-8') ?></span>
                 <?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?>
             </a>
+            <?php if ($key === 'fisheries' && $activePage === 'fisheries'): ?>
+                <div class="ml-5 border-l border-white/25 pl-3 space-y-1" aria-label="Fishery navigation">
+                    <?php foreach (FisheryController::navigation() as $navSection => $item): ?>
+                        <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="block rounded-md px-3 py-2 text-xs font-semibold <?= $fisherySection === $navSection ? 'bg-secondary-fixed text-on-secondary-fixed' : 'text-white/75 hover:bg-white/10 hover:text-white' ?>" <?= $fisherySection === $navSection ? 'aria-current="page"' : '' ?>><?= htmlspecialchars($item['label']) ?></a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         <?php endforeach; ?>
         </div>
     </div>

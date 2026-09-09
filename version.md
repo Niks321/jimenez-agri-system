@@ -33,3 +33,14 @@
 33rd version - Restored vertical page scrolling while the personnel navigation drawer is open, while continuing to prevent horizontal overflow.
 34th version - Added the personnel insurance entry module with policy tracking, coverage fields, active records display, and navigation integration for the agriculture and fisheries insurance workflows.
 35th version - Added local insurance sample SQL data and tightened database ignore rules so private MariaDB import files stay out of Git while keeping the project schema and import structure intact.
+36th version - Added Fishery Active and Inactive Fisher Folk sub-navigation, RSBSA and registration fields, fisherfolk registry listings, a Fishing Boat Insurance Application data-entry form based on the provided reference, printable application styling, application storage, and preserved catch monitoring.
+37th version - Moved the Fishery Active, Inactive, Application, and Catch Monitoring tabs into the expandable main personnel sidebar navigation and synchronized their active states.
+38th version - Updated each Fishery tab with its own page title, header subtitle, description, and section context for Active Fisher Folk, Inactive Fisher Folk, Application, and Catch Monitoring.
+39th version - Connected Fishery applications to searchable Active and Inactive Fisher Folk registries, expanded registry tables with application-form context, and completed the printable form sections for attachments, applicant signature, account-officer review, and dates.
+40th version - Separated Fishery into dedicated OOP FisheryController, FisheryService, and FisheryRepository classes with injected dependencies, repository-owned SQL and transactions, and page-level delegation through the controller.
+41st version - Moved Fishery sub-navigation links, valid-section handling, and tab metadata into FisheryController so the main sidebar and Fishery page use one backend-owned definition.
+42nd version - Fixed the Active and Inactive Fish Folk registry PDO HY093 error by assigning unique search parameters to each searchable column.
+43rd version - Fixed Fishery sub-nav context being overwritten as Catch Monitoring by renaming the sidebar loop variable that collided with the page's selected section.
+44th version - Reworked the Fishery Application screen into an A4 portrait paper-form layout with underline fields, print-only sizing, hidden portal navigation, and browser PDF-ready output matching the provided reference form.
+45th version - Matched the Fishery Application print template more closely to the provided form with centered agency header hierarchy, compact ruled rows, square checkbox/radio options for applicant and boat choices, and preserved backend field submission.
+46th version - Added a temporary CSRF-protected Fishery delete workflow for Active and Inactive Fisher Folk, deleting related applications, boats, and catch records transactionally while preserving the selected tab.

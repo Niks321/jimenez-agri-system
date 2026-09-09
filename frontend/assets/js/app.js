@@ -4,13 +4,97 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.remove('personnel-nav-open', 'personnel-sidebar-collapsed', 'policy-modal-open');
+  document.body.style.overflow = 'visible';
+  document.body.style.overflowX = 'visible';
+  document.body.style.overflowY = 'auto';
+  document.documentElement.style.overflow = 'visible';
+  document.documentElement.style.overflowX = 'visible';
+  document.documentElement.style.overflowY = 'auto';
   initMobileMenu();
   initCookieBanner();
+  initPolicyModals();
   initGalleryFilter();
   initScrollSpy();
   initContactForm();
   initBlueprintCarousel();
+  initPersonnelSidebar();
 });
+
+function clearScrollLocks() {
+  document.body.classList.remove('personnel-nav-open', 'personnel-sidebar-collapsed', 'policy-modal-open');
+  document.body.style.overflow = 'visible';
+  document.body.style.overflowX = 'visible';
+  document.body.style.overflowY = 'auto';
+  document.documentElement.style.overflow = 'visible';
+  document.documentElement.style.overflowX = 'visible';
+  document.documentElement.style.overflowY = 'auto';
+}
+
+function initPersonnelSidebar() {
+  const sidebar = document.getElementById('personnel-sidebar');
+  const overlay = document.getElementById('personnel-sidebar-overlay');
+  const toggle = document.getElementById('personnel-nav-toggle');
+  const reopen = document.getElementById('personnel-nav-reopen');
+  if (!sidebar || !overlay || !toggle || !reopen) return;
+
+  const clearSidebarBodyState = () => {
+    clearScrollLocks();
+  };
+
+  const close = () => {
+    sidebar.classList.add('hidden');
+    overlay.classList.add('hidden');
+    sidebar.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Show personnel navigation');
+    toggle.querySelector('.material-symbols-outlined').textContent = 'menu';
+    reopen.classList.remove('hidden');
+    reopen.setAttribute('aria-expanded', 'false');
+    clearSidebarBodyState();
+    document.body.style.overflowY = 'visible';
+  };
+
+  const open = () => {
+    sidebar.classList.remove('hidden');
+    sidebar.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Hide personnel navigation');
+    toggle.querySelector('.material-symbols-outlined').textContent = 'menu_open';
+    reopen.classList.add('hidden');
+    reopen.setAttribute('aria-expanded', 'true');
+    clearSidebarBodyState();
+    if (window.innerWidth < 1024) {
+      overlay.classList.remove('hidden');
+    } else {
+      overlay.classList.add('hidden');
+    }
+    document.body.style.overflowY = 'visible';
+  };
+
+  toggle.addEventListener('click', () => {
+    if (sidebar.classList.contains('hidden')) open(); else close();
+  });
+  reopen.addEventListener('click', open);
+  overlay.addEventListener('click', close);
+  sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !sidebar.classList.contains('hidden')) close();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      if (toggle.getAttribute('aria-expanded') === 'true') open();
+      else close();
+    } else if (toggle.getAttribute('aria-expanded') === 'true') {
+      open();
+    } else {
+      close();
+    }
+  });
+
+  if (window.innerWidth >= 1024) open();
+  else close();
+}
 
 /**
  * 1. Mobile Navigation Drawer Toggle
@@ -51,6 +135,56 @@ function initMobileMenu() {
   });
 }
 
+function initPolicyModals() {
+  const openers = document.querySelectorAll('[data-policy-open]');
+  const modals = document.querySelectorAll('.policy-modal');
+  if (!openers.length || !modals.length) return;
+
+  let lastTrigger = null;
+  openers.forEach((opener) => {
+    opener.addEventListener('click', (event) => {
+      const modal = document.getElementById(opener.dataset.policyOpen);
+      if (!modal) return;
+      event.preventDefault();
+      lastTrigger = opener;
+      if (typeof modal.showModal === 'function') {
+        modal.showModal();
+      } else {
+        modal.classList.add('is-open');
+        document.body.classList.add('policy-modal-open');
+      }
+    });
+  });
+
+  modals.forEach((modal) => {
+    const close = () => {
+      if (typeof modal.close === 'function' && modal.open) {
+        modal.close();
+      } else {
+        modal.classList.remove('is-open');
+      }
+      document.body.classList.remove('policy-modal-open');
+      document.body.style.overflow = '';
+      document.body.style.overflowX = '';
+      document.body.style.overflowY = '';
+      if (lastTrigger) lastTrigger.focus();
+    };
+
+    modal.querySelectorAll('[data-policy-close]').forEach((button) => button.addEventListener('click', close));
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+    modal.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      close();
+    });
+  });
+}
+
+function clearPageScrollLocks() {
+  clearScrollLocks();
+}
+
 function closeMobileMenu() {
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');
@@ -65,23 +199,26 @@ function closeMobileMenu() {
  */
 function initCookieBanner() {
   const banner = document.getElementById('cookie-banner');
-  const acceptBtn = document.getElementById('cookie-accept-btn');
+  const choiceButtons = banner ? banner.querySelectorAll('[data-cookie-choice]') : [];
 
   if (!banner) return;
 
-  const cookieConsent = localStorage.getItem('mao_cookie_consent');
-  if (cookieConsent === 'accepted') {
+  clearPageScrollLocks();
+
+  const cookieConsent = document.cookie.split('; ').find((row) => row.startsWith('mao_cookie_consent='));
+  if (cookieConsent && ['accepted', 'declined'].includes(cookieConsent.split('=')[1])) {
     banner.style.display = 'none';
   } else {
     banner.style.display = 'block';
   }
 
-  if (acceptBtn) {
-    acceptBtn.addEventListener('click', () => {
-      localStorage.setItem('mao_cookie_consent', 'accepted');
+  choiceButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.cookieChoice;
+      document.cookie = `mao_cookie_consent=${choice}; Max-Age=31536000; Path=/; SameSite=Lax`;
       banner.style.display = 'none';
     });
-  }
+  });
 }
 
 /**

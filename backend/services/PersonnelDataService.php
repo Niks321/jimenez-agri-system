@@ -45,26 +45,6 @@ final class PersonnelDataService
         ]);
     }
 
-    public function addFishCatch(array $data): void
-    {
-        $statement = $this->database->connection()->prepare(
-            'INSERT INTO fish_catch (fisherman_id, boat_id, species_id, gear_id, catch_date, landing_site, quantity, unit, estimated_value, notes) '
-            . 'VALUES (:fisherman_id, :boat_id, :species_id, :gear_id, :catch_date, :landing_site, :quantity, :unit, :estimated_value, :notes)'
-        );
-        $statement->execute([
-            'fisherman_id' => (int) $data['fisherman_id'],
-            'boat_id' => $data['boat_id'] ?: null,
-            'species_id' => (int) $data['species_id'],
-            'gear_id' => $data['gear_id'] ?: null,
-            'catch_date' => $data['catch_date'],
-            'landing_site' => trim($data['landing_site']) ?: null,
-            'quantity' => (float) $data['quantity'],
-            'unit' => trim($data['unit']) ?: 'kg',
-            'estimated_value' => $data['estimated_value'] ?: null,
-            'notes' => trim($data['notes']) ?: null,
-        ]);
-    }
-
     public function addVegetable(array $data): void
     {
         $statement = $this->database->connection()->prepare(
@@ -126,7 +106,7 @@ final class PersonnelDataService
 
     public function fishermen(): array
     {
-        return $this->database->connection()->query('SELECT id, first_name, middle_name, last_name FROM fishermen ORDER BY last_name, first_name')->fetchAll();
+        return $this->database->connection()->query('SELECT id, rsbsa_number, registration_number, first_name, middle_name, last_name, barangay, status FROM fishermen ORDER BY last_name, first_name')->fetchAll();
     }
 
     public function boats(): array
