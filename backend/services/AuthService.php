@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../core/Database.php';
 require_once __DIR__ . '/../security/PasswordHasher.php';
+require_once __DIR__ . '/../security/DepartmentIdentity.php';
 
 final class AuthService
 {
@@ -15,7 +16,7 @@ final class AuthService
 	{
 		$connection = $this->database->connection();
 		$statement = $connection->prepare(
-			'SELECT id, username, email, password_hash, full_name, role '
+			'SELECT id, username, email, password_hash, full_name, role, department '
 			. 'FROM users WHERE email = :email AND status = :status LIMIT 1'
 		);
 		$statement->execute(['email' => $email, 'status' => 'active']);
@@ -24,11 +25,18 @@ final class AuthService
 		if (!is_array($user) || !$this->passwordHasher->verify($password, (string) $user['password_hash'])) {
 			return null;
 		}
+		if (!DepartmentIdentity::isValid((string) $user['role'], $user['department'] ?? null)) {
+			return null;
+		}
 
 		$update = $connection->prepare('UPDATE users SET last_login_at = NOW() WHERE id = :id');
 		$update->execute(['id' => $user['id']]);
 
-		unset($user['password_hash']);
-		return $user;
+		return [
+			'id' => (int) $user['id'],
+			'full_name' => (string) $user['full_name'],
+			'role' => (string) $user['role'],
+			'department' => $user['department'] ?: null,
+		];
 	}
 }

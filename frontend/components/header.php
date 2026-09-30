@@ -37,5 +37,7 @@ if (is_file($sessionSecurity)) {
   <link rel="stylesheet" href="<?= $assetBase ?>/css/style.css">
   <link rel="stylesheet" href="<?= $assetBase ?>/css/components.css">
   <link rel="stylesheet" href="<?= $assetBase ?>/css/responsive.css">
+  <link rel="stylesheet" href="<?= $assetBase ?>/css/policy-modals.css">
+  <?php if (($activePage ?? '') !== ''): ?><link rel="stylesheet" href="<?= $assetBase ?>/css/personnel.css"><?php endif; ?>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">

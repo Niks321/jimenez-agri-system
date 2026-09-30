@@ -1,0 +1,14 @@
+Options -Indexes
+RewriteEngine On
+
+# Never execute or serve implementation, configuration, database, or runtime files.
+RewriteRule ^(?:backend|config|database|docs|frontend|routes|storage|tests)(?:/|$) - [F,L,NC]
+
+# Route the project root through the only intended web root.
+RewriteRule ^public(?:/|$) - [L]
+RewriteRule ^$ public/ [L]
+RewriteRule ^(.+)$ public/$1 [L]
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

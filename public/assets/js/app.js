@@ -1,6 +1,6 @@
 /**
  * Municipal Agriculture Office Jimenez - Main Application Logic
- * Path: frontend/assets/js/app.js
+ * Path: public/assets/js/app.js
  */
 
 document.addEventListener('DOMContentLoaded', () => {

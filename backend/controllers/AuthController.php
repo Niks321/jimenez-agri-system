@@ -48,8 +48,7 @@ final class AuthController
 	public function dashboardPath(): string
 	{
 		return match ($_SESSION['user']['role'] ?? '') {
-			'administrator' => 'admin-dashboard.php',
-			'staff' => 'personnel-dashboard.php',
+			'administrator', 'staff' => 'workspace.php',
 			default => '403.php',
 		};
 	}

@@ -21,26 +21,3 @@ $userName = $_SESSION['user']['full_name'] ?? 'Personnel user';
         </div>
     </div>
 </header>
-<style>
-.personnel-header-inner > div:first-child {
-    width: 100%;
-}
-@media (max-width: 639px) {
-    .personnel-header-inner > div:first-child {
-        max-width: calc(100% - 8rem);
-    }
-    .personnel-header-actions > span {
-        display: none;
-    }
-}
-@media (min-width: 640px) and (max-width: 1023px) {
-    .personnel-header-inner > div:first-child {
-        max-width: calc(100% - 12rem);
-    }
-}
-@media (min-width: 1024px) {
-    .personnel-header-inner > div:first-child {
-        max-width: calc(100% - 28rem);
-    }
-}
-</style>

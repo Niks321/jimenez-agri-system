@@ -1,0 +1,10 @@
+Options -Indexes
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^assets/.*\.php$ - [F,L,NC]
+</IfModule>

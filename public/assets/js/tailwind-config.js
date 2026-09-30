@@ -1,7 +1,7 @@
 /**
  * Municipal Agriculture Office Jimenez
  * Tailwind CSS Configuration
- * Path: frontend/assets/js/tailwind-config.js
+ * Path: public/assets/js/tailwind-config.js
  */
 
 tailwind.config = {

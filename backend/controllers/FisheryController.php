@@ -14,10 +14,10 @@ final class FisheryController
     public static function navigation(): array
     {
         return [
-            'active' => ['label' => 'Active - Fisher Folk', 'url' => 'personnel-fishery.php?section=active'],
-            'inactive' => ['label' => 'Inactive - Fisher Folk', 'url' => 'personnel-fishery.php?section=inactive'],
-            'application' => ['label' => 'Application', 'url' => 'personnel-fishery.php?section=application'],
-            'monitoring' => ['label' => 'Catch Monitoring', 'url' => 'personnel-fishery.php?section=monitoring'],
+            'active' => ['label' => 'Active - Fisher Folk', 'url' => 'workspace.php?page=fishery/records&section=active'],
+            'inactive' => ['label' => 'Inactive - Fisher Folk', 'url' => 'workspace.php?page=fishery/records&section=inactive'],
+            'application' => ['label' => 'Application', 'url' => 'workspace.php?page=fishery/records&section=application'],
+            'monitoring' => ['label' => 'Catch Monitoring', 'url' => 'workspace.php?page=fishery/records&section=monitoring'],
         ];
     }
 

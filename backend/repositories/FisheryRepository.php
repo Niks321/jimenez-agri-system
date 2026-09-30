@@ -1,11 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../security/DepartmentAccess.php';
 
 final class FisheryRepository
 {
     public function __construct(private Database $database)
     {
+        DepartmentAccess::require('fishery');
     }
 
     public function createCatch(array $data): void

@@ -3,18 +3,24 @@
 Database schema files are kept as numbered migrations under `database/migrations/`.
 They can be imported through phpMyAdmin or the XAMPP MariaDB terminal in numeric
 order after selecting the target database. Start with `001_users.sql` and finish
-with `022_audit_logs.sql`.
+with `025_department_data_isolation.sql`.
 
 The repository does not include a demo-user seed or a known password. This prevents
 a public clone from automatically receiving an account that could be used against a
 deployed database. Create local demonstration users manually, or generate them from
 a private deployment process, and disable them before production use.
 
-For this local XAMPP workspace, run `database/local/demo-users.sql` after importing
-the migrations. It creates two local accounts: `admin@example.com` / `admin123` for
-the administrator dashboard, and `personnel@example.com` / `personnel123` for the
-personnel dashboard. The local file is ignored by Git and must never be committed.
+After importing migration `024_user_departments.sql`, assign each staff account one
+department: `crop`, `vegetables`, `fishery`, or `livestock`. Accounts without a
+department are denied workspace access. Administrator accounts use the
+`administrator` role; staff accounts use the `staff` role and their department value.
+
+Migration `025_department_data_isolation.sql` constrains department values, disables
+unsupported legacy account types, and moves livestock owner details into a separate
+livestock-owned table before removing the livestock-to-crop-farmer relationship.
+Back up the database before applying it. Existing accounts outside the administrator
+and department staff identities are disabled by the migration and must be reviewed.
 
 After the migrations, the files under `database/seeders/` add non-sensitive reference
 data. The files under `database/views/` create reporting views. The PHP models and
-services still need to be implemented against this schema.
+services use the database schema through department-guarded repositories and services.

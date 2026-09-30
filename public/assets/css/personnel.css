@@ -1,0 +1,63 @@
+.personnel-header-inner > div:first-child {
+    width: 100%;
+}
+
+@media (max-width: 639px) {
+    .personnel-header-inner > div:first-child {
+        max-width: calc(100% - 8rem);
+    }
+
+    .personnel-header-actions > span {
+        display: none;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .personnel-header-inner > div:first-child {
+        max-width: calc(100% - 12rem);
+    }
+}
+
+@media (min-width: 1024px) {
+    .personnel-header-inner > div:first-child {
+        max-width: calc(100% - 28rem);
+    }
+}
+
+html:has(aside[aria-label="Personnel navigation"]),
+body:has(aside[aria-label="Personnel navigation"]) {
+    max-width: 100%;
+}
+
+#personnel-sidebar.hidden {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    body:has(aside[aria-label="Personnel navigation"]) header,
+    body:has(aside[aria-label="Personnel navigation"]) main,
+    body:has(aside[aria-label="Personnel navigation"]) footer {
+        margin-left: 16rem;
+        width: calc(100vw - 16rem);
+        max-width: calc(100vw - 16rem);
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 1023px) {
+    body:has(aside[aria-label="Personnel navigation"]) header,
+    body:has(aside[aria-label="Personnel navigation"]) main,
+    body:has(aside[aria-label="Personnel navigation"]) footer {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #personnel-sidebar {
+        top: 5rem;
+    }
+
+    #personnel-sidebar-overlay {
+        top: 5rem;
+    }
+}
