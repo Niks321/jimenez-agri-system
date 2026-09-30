@@ -1,1 +1,245 @@
-.fishery-subnav a[aria-current="page"]{background:#d8e9d4;color:#16452b}.fishery-application{max-width:190mm;min-height:270mm;margin:0 auto;background:#fff;color:#111;font-family:Georgia,"Times New Roman",serif}.fishery-application form{font-size:12px;line-height:1.1}.fishery-application fieldset{border:0;margin:0 0 10px;padding:0}.fishery-application input,.fishery-application select,.fishery-application textarea{min-height:34px;background:#fff;color:#111;border:0;border-bottom:1px solid #222;border-radius:0;box-shadow:none}.fishery-application select{appearance:auto;color:transparent;text-shadow:0 0 0 #111}.fishery-application select option{color:#111}.fishery-application .form-line{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:end;gap:8px;min-height:27px}.fishery-application .form-line>input,.fishery-application .form-line>select{width:100%}.fishery-application .paper-heading{text-align:center;line-height:1.15}.fishery-application .paper-heading .agency{font-size:14px;font-weight:700}.fishery-application .paper-heading .program{font-size:13px;font-weight:700}.fishery-application .paper-heading .form-title{margin-top:12px;font-size:14px;font-weight:700}.fishery-application .paper-options{display:flex;flex-wrap:wrap;gap:12px;align-items:center;min-height:27px}.fishery-application .paper-option{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.fishery-application .paper-option input{appearance:auto;width:14px;height:14px;min-height:14px;margin:0;padding:0;accent-color:#111}.fishery-application .reference-form .grid{gap:3px}.fishery-application .reference-form input,.fishery-application .reference-form select{min-height:23px;padding:2px 3px;font-size:11px}.fishery-application .reference-form .form-line{min-height:23px}.fishery-application .reference-form .property-heading{width:145px;text-transform:uppercase;font-weight:700}.fishery-application .reference-form .review-row{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}.fishery-application-actions{max-width:190mm;margin:12px auto 0}@media print{@page{size:A4 portrait;margin:12mm 14mm}html,body{margin:0!important;background:#fff!important}body:has(.fishery-application) header,body:has(.fishery-application) aside,body:has(.fishery-application) #personnel-sidebar-overlay,body:has(.fishery-application) .fishery-subnav,body:has(.fishery-application) .screen-only,body:has(.fishery-application) footer,.fishery-application-actions{display:none!important}body:has(.fishery-application) main{margin:0!important;padding:0!important;width:100%!important;max-width:none!important}body:has(.fishery-application) main>section{padding:0!important;max-width:none!important}.fishery-application{width:182mm;max-width:none;min-height:273mm;margin:0 auto;border:0!important;box-shadow:none!important;padding:0!important}.fishery-application .reference-form{display:block!important}.fishery-application input,.fishery-application select,.fishery-application textarea{min-height:22px;padding:2px 3px!important;border-color:#222!important;color:#000!important}.fishery-application .paper-option input{appearance:none;width:12px;height:12px;min-height:12px;border:1px solid #111;background:#fff;position:relative}.fishery-application .paper-option input:checked:after{content:"\\2713";position:absolute;left:1px;top:-5px;font-size:14px;font-weight:700}.fishery-application .reference-form{font-size:10px}.fishery-application .reference-form input,.fishery-application .reference-form select{min-height:19px;font-size:10px}}.fishery-subnav a[aria-current="page"]{background:#d8e9d4;color:#16452b}.fishery-application{max-width:190mm;min-height:270mm;margin:0 auto;background:#fff;color:#111;font-family:Georgia,"Times New Roman",serif}.fishery-application form{font-size:12px;line-height:1.1}.fishery-application fieldset{border:0;margin:0 0 10px;padding:0}.fishery-application input,.fishery-application select,.fishery-application textarea{min-height:34px;background:#fff;color:#111;border:0;border-bottom:1px solid #222;border-radius:0;box-shadow:none}.fishery-application select{appearance:auto;color:transparent;text-shadow:0 0 0 #111}.fishery-application select option{color:#111}.fishery-application .paper-heading{text-align:center;line-height:1.15}.fishery-application .paper-heading .agency{font-size:14px;font-weight:700}.fishery-application .paper-heading .program{font-size:13px;font-weight:700}.fishery-application .paper-heading .form-title{margin-top:12px;font-size:14px;font-weight:700}.fishery-application .paper-options{display:flex;flex-wrap:wrap;gap:12px;align-items:center;min-height:27px}.fishery-application .paper-option{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.fishery-application .paper-option input{appearance:auto;width:14px;height:14px;min-height:14px;margin:0;padding:0;accent-color:#111}.fishery-application .reference-form .grid{gap:3px}.fishery-application .reference-form input,.fishery-application .reference-form select{min-height:23px;padding:2px 3px;font-size:11px}.fishery-application .reference-form .form-line{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:end;gap:8px;min-height:23px}.fishery-application .reference-form .property-heading{width:145px;text-transform:uppercase;font-weight:700}.fishery-application .reference-form .review-row{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}.fishery-application-actions{max-width:190mm;margin:12px auto 0}@media print{@page{size:A4 portrait;margin:12mm 14mm}html,body{margin:0!important;background:#fff!important}body:has(.fishery-application) header,body:has(.fishery-application) aside,body:has(.fishery-application) #personnel-sidebar-overlay,body:has(.fishery-application) .fishery-subnav,body:has(.fishery-application) .screen-only,body:has(.fishery-application) footer,.fishery-application-actions{display:none!important}body:has(.fishery-application) main{margin:0!important;padding:0!important;width:100%!important;max-width:none!important}body:has(.fishery-application) main>section{padding:0!important;max-width:none!important}.fishery-application{width:182mm;max-width:none;min-height:273mm;margin:0 auto;border:0!important;box-shadow:none!important;padding:0!important}.fishery-application .reference-form{display:block!important}.fishery-application input,.fishery-application select,.fishery-application textarea{min-height:22px;padding:2px 3px!important;border-color:#222!important;color:#000!important}.fishery-application .paper-option input{appearance:none;width:12px;height:12px;min-height:12px;border:1px solid #111;background:#fff;position:relative}.fishery-application .paper-option input:checked:after{content:"\\2713";position:absolute;left:1px;top:-5px;font-size:14px;font-weight:700}.fishery-application .reference-form{font-size:10px}.fishery-application .reference-form input,.fishery-application .reference-form select{min-height:19px;font-size:10px}}
+.fishery-subnav a[aria-current="page"]{background:#d8e9d4;color:#16452b}.fishery-application{max-width:190mm;min-height:270mm;margin:0 auto;background:#fff;color:#111;font-family:Georgia,"Times New Roman",serif}.fishery-application form{font-size:12px;line-height:1.1}.fishery-application fieldset{border:0;margin:0 0 10px;padding:0}.fishery-application input,.fishery-application select,.fishery-application textarea{min-height:34px;background:#fff;color:#111;border:0;border-bottom:1px solid #222;border-radius:0;box-shadow:none}.fishery-application select{appearance:auto;color:transparent;text-shadow:0 0 0 #111}.fishery-application select option{color:#111}.fishery-application .paper-heading{text-align:center;line-height:1.15}.fishery-application .paper-heading .agency{font-size:14px;font-weight:700}.fishery-application .paper-heading .program{font-size:13px;font-weight:700}.fishery-application .paper-heading .form-title{margin-top:12px;font-size:14px;font-weight:700}.fishery-application .paper-options{display:flex;flex-wrap:wrap;gap:12px;align-items:center;min-height:27px}.fishery-application .paper-option{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.fishery-application .paper-option input{appearance:auto;width:14px;height:14px;min-height:14px;margin:0;padding:0;accent-color:#111}.fishery-application .reference-form .grid{gap:3px}.fishery-application .reference-form input,.fishery-application .reference-form select{min-height:23px;padding:2px 3px;font-size:11px}.fishery-application .reference-form .form-line{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:end;gap:8px;min-height:23px}.fishery-application .reference-form .property-heading{width:145px;text-transform:uppercase;font-weight:700}.fishery-application .reference-form .review-row{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:20px}.fishery-application-actions{max-width:190mm;margin:12px auto 0}@media print{@page{size:A4 portrait;margin:12mm 14mm}html,body{margin:0!important;background:#fff!important}body:has(.fishery-application) header,body:has(.fishery-application) aside,body:has(.fishery-application) #personnel-sidebar-overlay,body:has(.fishery-application) .fishery-subnav,body:has(.fishery-application) .screen-only,body:has(.fishery-application) footer,.fishery-application-actions{display:none!important}body:has(.fishery-application) main{margin:0!important;padding:0!important;width:100%!important;max-width:none!important}body:has(.fishery-application) main>section{padding:0!important;max-width:none!important}.fishery-application{width:182mm;max-width:none;min-height:273mm;margin:0 auto;border:0!important;box-shadow:none!important;padding:0!important}.fishery-application .reference-form{display:block!important}.fishery-application input,.fishery-application select,.fishery-application textarea{min-height:22px;padding:2px 3px!important;border-color:#222!important;color:#000!important}.fishery-application .paper-option input{appearance:none;width:12px;height:12px;min-height:12px;border:1px solid #111;background:#fff;position:relative}.fishery-application .paper-option input:checked:after{content:"\\2713";position:absolute;left:1px;top:-5px;font-size:14px;font-weight:700}.fishery-application .reference-form{font-size:10px}.fishery-application .reference-form input,.fishery-application .reference-form select{min-height:19px;font-size:10px}}
+/* Fishery sidebar subnavigation stays visible beneath its parent links. */
+.fishery-sidebar-subnav{display:flex;flex-direction:column;gap:.25rem;margin:-.35rem 0 .35rem 1.2rem;padding-left:.75rem;border-left:1px solid rgba(255,255,255,.3);min-width:0}
+.fishery-sidebar-subnav a{display:block;min-width:0;border-radius:.5rem;padding:.5rem .65rem;color:rgba(255,255,255,.78);font-size:.8125rem;line-height:1.25;overflow-wrap:anywhere;text-decoration:none}
+.fishery-sidebar-subnav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.fishery-sidebar-subnav a[aria-current="page"]{background:#d8e9d4;color:#16452b;font-weight:700}
+/* Printed application follows the supplied PCIC paper form while remaining readable on screen. */
+.fishery-application .paper-section{display:flex;flex-direction:column;gap:5px}
+.fishery-application .paper-labeled-row{display:grid;grid-template-columns:minmax(145px,28%) minmax(0,1fr);align-items:end;gap:8px;min-height:25px}
+.fishery-application .paper-labeled-row>span,.fishery-application .paper-beneficiary label>span{font-size:10px;text-transform:uppercase}
+.fishery-application .paper-labeled-row>input,.fishery-application .paper-labeled-row label input,.fishery-application .paper-beneficiary input,.fishery-application .paper-name-grid input{width:100%;min-width:0}
+.fishery-application .paper-name-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.fishery-application .paper-name-grid label{display:block;text-align:center}
+.fishery-application .paper-name-grid small{display:block;font-size:9px}
+.fishery-application .paper-choice-row{display:flex;align-items:center;flex-wrap:wrap;gap:5px 12px;min-height:26px}
+.fishery-application .paper-options{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px}
+.fishery-application .paper-civil{flex:1 1 340px}
+.fishery-application .paper-inline-label{margin-left:8px;white-space:nowrap;font-size:10px;text-transform:uppercase}
+.fishery-application .paper-beneficiary{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:2px 0 10px 22%}
+.fishery-application .paper-beneficiary label{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:end;gap:6px}
+.fishery-application .paper-property-title{margin:4px 0 5px 0;font-size:10px;text-transform:uppercase}
+.fishery-application .paper-details-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:3px 3% 8px 23%}
+.fishery-application .paper-details-grid>div{display:flex;flex-direction:column;gap:3px}
+.fishery-application .paper-details-grid label{display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,1.3fr);align-items:end;gap:5px;font-size:10px}
+.fishery-application .paper-details-grid label input{width:100%}
+.fishery-application .paper-note{margin:5px 0 0 23%;font-size:10px;text-transform:uppercase}
+.fishery-application .paper-signatures{display:grid;grid-template-columns:1fr 1fr;gap:35px;margin:35px 4% 0;font-size:10px;text-align:center}
+.fishery-application .paper-signatures>div{display:flex;flex-direction:column;gap:4px}
+.fishery-application .paper-signatures>div>span{border-top:1px solid #111;padding-top:4px}
+.fishery-application .paper-signatures label{display:grid;grid-template-columns:max-content 1fr;align-items:end;gap:6px;text-align:left}
+.fishery-application .paper-signatures small{font-size:9px}
+@media(max-width:640px){.fishery-application .paper-labeled-row{grid-template-columns:1fr;gap:2px}.fishery-application .paper-beneficiary{margin-left:0}.fishery-application .paper-details-grid{margin-left:0}.fishery-application .paper-signatures{margin:28px 0 0;gap:14px}}
+@media print{.fishery-application .paper-section{gap:3px}.fishery-application .paper-labeled-row{min-height:22px}.fishery-application .paper-labeled-row>span,.fishery-application .paper-beneficiary label>span,.fishery-application .paper-property-title{font-size:9px}.fishery-application .paper-choice-row{font-size:9px;gap:3px 8px}.fishery-application .paper-options{gap:3px 8px}.fishery-application .paper-details-grid{gap:8px}.fishery-application .paper-signatures{margin-top:25px}}
+.fishery-application fieldset.screen-only{border:1px solid #d8e1d8!important;margin-bottom:1.25rem!important;padding:1rem!important}
+.fishery-application .paper-section+.paper-section{border-top:1px solid #e5e5e5;padding-top:8px}
+.fishery-application .paper-labeled-row input:focus,.fishery-application .paper-name-grid input:focus,.fishery-application .paper-details-grid input:focus,.fishery-application .paper-signatures input:focus{outline:2px solid rgb(31 104 69 / 25%);outline-offset:1px}
+.fishery-application .paper-choice-row input:focus-visible{outline:2px solid #1f6845;outline-offset:2px}
+.fishery-application .paper-option-square input{appearance:none;width:13px;height:13px;min-height:13px;border:1px solid #111;border-radius:0;background:#fff}
+.fishery-application .paper-option:not(.paper-option-square) input{border-radius:50%}
+.fishery-application .paper-period-row{display:grid;grid-template-columns:minmax(145px,28%) minmax(0,1fr) minmax(0,1fr);align-items:end;gap:8px;min-height:25px;font-size:10px;text-transform:uppercase}
+.fishery-application .paper-period-row label{display:flex;align-items:end;gap:5px;text-transform:none}
+.fishery-application .paper-period-row input{flex:1;min-width:0}
+.fishery-application .paper-others-label{margin:3px 0 0 1%;font-size:10px;text-transform:uppercase}
+.fishery-application .paper-note{margin-left:0;white-space:normal}
+@media(max-width:640px){.fishery-application .paper-period-row{grid-template-columns:1fr;gap:2px}.fishery-application .paper-period-row label{min-height:25px}}
+@media print{
+ .fishery-application .paper-period-row{min-height:22px;font-size:9px}
+ .fishery-application .paper-others-label{font-size:9px}
+ .fishery-application .paper-option-square input{appearance:none;width:12px;height:12px;min-height:12px;border:1px solid #111;border-radius:0;background:#fff;position:relative}
+ .fishery-application .paper-option:not(.paper-option-square) input{appearance:none;width:12px;height:12px;min-height:12px;border:1px solid #111;border-radius:50%;background:#fff;position:relative}
+ .fishery-application .paper-option:not(.paper-option-square) input:checked:after{content:"";position:absolute;inset:3px;border:0;border-radius:50%;background:#111}
+ .fishery-application .paper-option-square input:checked:after{content:"\\2713";position:absolute;left:1px;top:-5px;font-size:14px;font-weight:700}
+}
+
+/* Final overrides: screen preview and print keep the same paper composition. */
+.fishery-application-viewport{width:100%;max-width:100%;overflow-x:auto;overflow-y:visible;padding:0 0 8px;overscroll-behavior-inline:contain}
+.fishery-application-viewport>.fishery-application{box-sizing:border-box;width:182mm;max-width:none;min-height:273mm;margin:0 auto;padding:10mm!important;border-radius:0!important}
+.fishery-application .paper-choice-row{display:grid;grid-template-columns:max-content max-content max-content minmax(0,1fr);align-items:center;gap:2px 7px;flex-wrap:nowrap;min-height:20px;font-size:8pt}
+.fishery-application .paper-choice-row>.paper-options{display:flex;flex-wrap:nowrap;gap:3px 8px;min-width:0;white-space:nowrap}
+.fishery-application .paper-choice-row>.paper-options>.paper-option+.paper-option{margin-left:0}
+.fishery-application .paper-choice-row .paper-option{gap:4px;padding:0 1px;font-size:8pt}
+.fishery-application .paper-choice-row .paper-inline-label{margin-left:3px;font-size:8pt;white-space:nowrap}
+.fishery-application .paper-choice-row .paper-civil{justify-content:space-between}
+.fishery-application .paper-property-location{grid-template-columns:minmax(0,1fr);gap:0;margin-top:2px}
+.fishery-application .paper-property-location>label{grid-template-columns:minmax(0,1fr);font-size:8pt}
+.fishery-application .paper-insured-amount{width:52%;min-height:18px;gap:5px}
+.fishery-application .paper-purchase{gap:0;margin:2px 0 0 23%;width:75%;max-width:none}
+.fishery-application .paper-purchase>strong{margin-left:-30.67%}
+.fishery-application .paper-purchase>label{grid-template-columns:65px minmax(0,1fr);min-height:18px;gap:5px;font-size:8pt}
+.fishery-application .paper-period-row{grid-template-columns:48mm minmax(0,1fr) minmax(0,1fr);min-height:19px;gap:5px;font-size:8pt}
+.fishery-application .paper-period-row input{min-height:17px!important;padding:0 2px!important;font-size:8pt!important}
+.fishery-application .paper-signatures{grid-template-columns:1fr 1fr;align-items:end;gap:25px;margin:10px 4% 0;font-size:8pt}
+.fishery-application .paper-applicant-signature{justify-self:center}
+.fishery-application-actions{position:static!important;inset:auto!important;z-index:auto!important;display:flex;justify-content:flex-end;gap:12px;max-width:none;margin:12px 0 0;padding:12px 0 0;border-top:1px solid #d7e0da;background:transparent;box-shadow:none}
+@media(max-width:640px){
+ .fishery-application-viewport>.fishery-application{margin-left:0;margin-right:0}
+ .fishery-application .paper-choice-field{grid-template-columns:48mm minmax(0,1fr)}
+ .fishery-application .paper-property-location{grid-template-columns:minmax(0,1fr)}
+ .fishery-application .paper-purchase{width:75%;max-width:none;margin-left:23%}
+ .fishery-application .paper-purchase>strong{margin-left:-30.67%}
+ .fishery-application .paper-signatures{grid-template-columns:1fr 1fr;gap:25px;margin:10px 4% 0}
+ .fishery-application .paper-applicant-signature{justify-self:center}
+}
+@media print{
+ .fishery-application-viewport{width:auto;max-width:none;overflow:visible;padding:0}
+ .fishery-application-viewport>.fishery-application{width:182mm;min-height:273mm;margin:0 auto;padding:10mm!important}
+ .fishery-application-actions{display:none!important}
+}
+
+/* Keep the on-screen sheet in the same composition as its printed copy. */
+.fishery-application-viewport{width:100%;max-width:100%;overflow-x:auto;overflow-y:visible;padding:0 0 8px;overscroll-behavior-inline:contain}
+.fishery-application-viewport>.fishery-application{box-sizing:border-box;width:182mm;max-width:none;min-height:273mm;margin:0 auto;padding:10mm!important;border-radius:0!important}
+.fishery-application .paper-choice-row{display:grid;grid-template-columns:max-content max-content max-content minmax(0,1fr);align-items:center;gap:2px 7px;flex-wrap:nowrap;min-height:20px;font-size:8pt}
+.fishery-application .paper-choice-row>.paper-options{display:flex;flex-wrap:nowrap;gap:3px 8px;min-width:0;white-space:nowrap}
+.fishery-application .paper-choice-row>.paper-options>.paper-option+.paper-option{margin-left:0}
+.fishery-application .paper-choice-row .paper-option{gap:4px;padding:0 1px;font-size:8pt}
+.fishery-application .paper-choice-row .paper-inline-label{margin-left:3px;font-size:8pt;white-space:nowrap}
+.fishery-application .paper-choice-row .paper-civil{justify-content:space-between}
+.fishery-application .paper-property-location{grid-template-columns:minmax(0,1fr);gap:0;margin-top:2px}
+.fishery-application .paper-property-location>label{grid-template-columns:minmax(0,1fr);font-size:8pt}
+.fishery-application .paper-insured-amount{width:52%;min-height:18px;gap:5px}
+.fishery-application .paper-purchase{gap:0;margin:2px 0 0 23%;width:75%;max-width:none}
+.fishery-application .paper-purchase>strong{margin-left:-30.67%}
+.fishery-application .paper-purchase>label{grid-template-columns:65px minmax(0,1fr);min-height:18px;gap:5px;font-size:8pt}
+.fishery-application .paper-period-row{grid-template-columns:48mm minmax(0,1fr) minmax(0,1fr);min-height:19px;gap:5px;font-size:8pt}
+.fishery-application .paper-period-row input{min-height:17px!important;padding:0 2px!important;font-size:8pt!important}
+.fishery-application .paper-signatures{grid-template-columns:1fr 1fr;align-items:end;gap:25px;margin:10px 4% 0;font-size:8pt}
+.fishery-application .paper-applicant-signature{justify-self:center}
+.fishery-application-actions{position:static!important;inset:auto!important;z-index:auto!important;display:flex;justify-content:flex-end;gap:12px;max-width:none;margin:12px 0 0;padding:12px 0 0;border-top:1px solid #d7e0da;background:transparent;box-shadow:none}
+@media(max-width:640px){
+ .fishery-application-viewport>.fishery-application{margin-left:0;margin-right:0}
+ .fishery-application .paper-choice-field{grid-template-columns:48mm minmax(0,1fr)}
+ .fishery-application .paper-property-location{grid-template-columns:minmax(0,1fr)}
+ .fishery-application .paper-purchase{width:75%;max-width:none;margin-left:23%}
+ .fishery-application .paper-purchase>strong{margin-left:-30.67%}
+ .fishery-application .paper-signatures{grid-template-columns:1fr 1fr;gap:25px;margin:10px 4% 0}
+ .fishery-application .paper-applicant-signature{justify-self:center}
+}
+@media print{
+ .fishery-application-viewport{width:auto;max-width:none;overflow:visible;padding:0}
+ .fishery-application-viewport>.fishery-application{width:182mm;min-height:273mm;margin:0 auto;padding:0!important}
+ .fishery-application-actions{display:none!important}
+}
+.fishery-application .paper-or-date-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fishery-application .paper-or-date-row label{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:end;gap:5px;font-size:10px}
+.fishery-application .paper-or-date-row input{width:100%;min-width:0}
+@media print{.fishery-application .paper-or-date-row label{font-size:9px}}
+.fishery-application .paper-section+.paper-section{border-top:0;padding-top:0}
+@media print{.fishery-application .paper-option-square input:checked:after{content:"?";position:absolute;left:1px;top:-5px;font-size:12px;font-weight:700}}
+/* Keep each choice visibly separate on screen and on paper. */
+.fishery-application .paper-options{column-gap:20px;row-gap:8px}
+.fishery-application .paper-options>.paper-option+.paper-option{margin-left:12px}
+.fishery-application .paper-option{gap:8px;padding:2px 3px}
+.fishery-application .paper-option input{display:inline-block!important;flex:0 0 14px;position:relative;width:14px;height:14px;min-width:14px;min-height:14px;margin:0 1px 0 0;padding:0;appearance:none;border:1px solid #111;border-radius:50%;background:#fff;vertical-align:middle}
+.fishery-application .paper-option:not(.paper-option-square) input:checked:after{content:"";position:absolute;inset:3px;border:0;border-radius:50%;background:#111}
+.fishery-application .paper-option-square input{border-radius:0!important}
+.fishery-application .paper-option-square input:checked:after{content:"";position:absolute;left:3px;top:0;width:5px;height:9px;border:solid #111;border-width:0 1.5px 1.5px 0;border-radius:0;transform:rotate(45deg)}
+@media print{
+ @page{size:A4 portrait;margin:8mm 10mm}
+ .fishery-application{width:190mm;min-height:0;height:auto;max-width:none;margin:0 auto;padding:0!important;break-inside:avoid;page-break-inside:avoid}
+ .fishery-application .paper-heading{margin-bottom:5mm!important;padding-bottom:3mm!important;line-height:1.05}
+ .fishery-application .paper-heading .agency{font-size:11pt}
+ .fishery-application .paper-heading .program{font-size:10pt}
+ .fishery-application .paper-heading .form-title{margin-top:5px;font-size:11pt}
+ .fishery-application fieldset{margin-bottom:4px}
+ .fishery-application .paper-section{gap:2px}
+ .fishery-application .paper-labeled-row{grid-template-columns:48mm minmax(0,1fr);gap:5px;min-height:19px}
+ .fishery-application .paper-labeled-row>span,.fishery-application .paper-beneficiary label>span,.fishery-application .paper-property-title,.fishery-application .paper-others-label{font-size:8pt}
+ .fishery-application .paper-choice-row{min-height:20px;gap:2px 7px;font-size:8pt}
+ .fishery-application .paper-options{gap:3px 14px}
+ .fishery-application .paper-options>.paper-option+.paper-option{margin-left:8px}
+ .fishery-application .paper-option{gap:6px;padding:0 2px;font-size:8pt}
+ .fishery-application .paper-option input{flex-basis:12px;width:12px;height:12px;min-width:12px;min-height:12px}
+ .fishery-application .paper-inline-label{margin-left:3px;font-size:8pt}
+ .fishery-application .paper-beneficiary{margin:1px 0 4px 22%;gap:10px}
+ .fishery-application .paper-details-grid{grid-template-columns:1fr 1fr;gap:8px;margin:2px 2% 4px 23%}
+ .fishery-application .paper-details-grid>div{gap:0}
+ .fishery-application .paper-details-grid label{grid-template-columns:minmax(78px,1fr) minmax(0,1.3fr);gap:4px;font-size:8pt}
+ .fishery-application .paper-details-grid input,.fishery-application .paper-or-date-row input{min-height:17px!important;padding:0 2px!important;font-size:8pt!important}
+ .fishery-application .paper-or-date-row{gap:5px}
+ .fishery-application .paper-or-date-row label{grid-template-columns:max-content minmax(0,1fr);gap:3px;font-size:8pt}
+ .fishery-application .paper-others-label{margin-top:0}
+ .fishery-application .paper-period-row{grid-template-columns:48mm 1fr 1fr;min-height:19px;gap:5px;font-size:8pt}
+ .fishery-application .paper-period-row input{min-height:17px!important;padding:0 2px!important;font-size:8pt!important}
+ .fishery-application .paper-note{margin-top:2px;font-size:8pt}
+ .fishery-application .paper-signatures{gap:25px;margin:10px 4% 0;font-size:8pt}
+ .fishery-application .paper-signatures label{gap:4px}
+ .fishery-application .paper-signatures input{min-height:17px!important;padding:0 2px!important;font-size:8pt!important}
+}
+.fishery-application .paper-option-mark{display:inline-flex!important}
+.fishery-application .paper-option input{opacity:0!important}
+.fishery-application .paper-option:not(.paper-option-square) input:checked+.paper-option-mark:after{content:"";position:static;inset:auto;border:0;border-radius:50%;background:#111}
+.fishery-application .paper-option-square input:checked+.paper-option-mark:after{content:"";position:absolute;top:0;left:4px;width:4px;height:8px;border:solid #111;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+@media print{.fishery-application .paper-option-square input:checked+.paper-option-mark:after{left:3px;width:4px;height:7px}}
+/* Reference-form structure mapped onto the saved application fields. */
+.fishery-application .paper-applicant-section,.fishery-application .paper-property-section,.fishery-application .paper-coverage-section{display:flex;min-width:0;flex-direction:column;gap:5px}
+.fishery-application .paper-applicant-section{gap:4px}
+.fishery-application .paper-choice-field{display:grid;grid-template-columns:minmax(145px,28%) minmax(0,1fr);align-items:center;gap:8px;min-height:27px}
+.fishery-application .paper-choice-field>span{font-size:10px;font-weight:700;text-transform:uppercase}
+.fishery-application .paper-choice-field .paper-options{min-width:0}
+.fishery-application .paper-property-title{margin-top:4px}
+.fishery-application .paper-property-location{display:grid;grid-template-columns:minmax(145px,28%) minmax(0,1fr);align-items:end;gap:8px;margin-top:4px}
+.fishery-application .paper-property-location>label{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;font-size:10px;font-weight:700;text-transform:uppercase}
+.fishery-application .paper-insured-amount{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:end;gap:7px;min-height:24px}
+.fishery-application .paper-insured-amount>span{padding-bottom:2px}
+.fishery-application .paper-insured-amount input{width:100%;min-width:0}
+.fishery-application .paper-purchase{display:flex;flex-direction:column;gap:3px;margin:5px 0 0 23%;max-width:75%}
+.fishery-application .paper-purchase>strong{margin-left:-23%;font-size:10px;text-transform:uppercase}
+.fishery-application .paper-purchase>label{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:end;gap:8px;font-size:10px;font-weight:600;text-transform:uppercase}
+.fishery-application .paper-purchase input{width:100%;min-width:0}
+.fishery-application .paper-coverage-section .paper-note{margin:2px 0 0}
+.fishery-application .paper-review-block{display:flex;flex-direction:column;gap:3px;align-items:stretch;text-align:left}
+.fishery-application .paper-applicant-signature{align-self:center;width:min(100%,82mm);margin-top:0;text-align:center}
+.fishery-application .paper-applicant-signature>span{display:block;height:28px;border-bottom:1px solid #111}
+.fishery-application .paper-applicant-signature>p{margin-top:3px;font-size:9px;line-height:1.2}
+@media(max-width:640px){.fishery-application .paper-choice-field,.fishery-application .paper-property-location{grid-template-columns:1fr;gap:2px}.fishery-application .paper-purchase{max-width:none;margin-left:0}.fishery-application .paper-purchase>strong{margin-left:0}.fishery-application .paper-signatures{grid-template-columns:1fr}.fishery-application .paper-applicant-signature{justify-self:end}}
+@media print{
+ .fishery-application .paper-applicant-section,.fishery-application .paper-property-section,.fishery-application .paper-coverage-section{gap:2px}
+ .fishery-application .paper-applicant-section{gap:1px}
+ .fishery-application .paper-choice-field{grid-template-columns:48mm minmax(0,1fr);min-height:19px;gap:5px}
+ .fishery-application .paper-choice-field>span,.fishery-application .paper-purchase>strong,.fishery-application .paper-purchase>label,.fishery-application .paper-property-location>label{font-size:8pt}
+ .fishery-application .paper-property-location{grid-template-columns:48mm minmax(0,1fr);gap:5px;margin-top:2px}
+ .fishery-application .paper-insured-amount{min-height:18px;gap:5px}
+ .fishery-application .paper-purchase{gap:0;margin:2px 0 0 23%;max-width:75%}
+ .fishery-application .paper-purchase>strong{margin-left:-23%}
+ .fishery-application .paper-purchase>label{grid-template-columns:65px minmax(0,1fr);min-height:18px;gap:5px}
+ .fishery-application .paper-review-block{gap:0}
+ .fishery-application .paper-applicant-signature>span{height:20px}
+ .fishery-application .paper-applicant-signature>p{font-size:8pt}
+ .fishery-application .paper-signatures{grid-template-columns:1fr 1fr;align-items:end;margin-top:10px}
+}
+/* Final application preview fixes: keep the same paper composition on screen and in print. */
+.fishery-application-viewport{width:100%;max-width:100%;overflow-x:auto;overflow-y:visible;padding:0 0 8px;overscroll-behavior-inline:contain}
+.fishery-application-viewport>.fishery-application{box-sizing:border-box;width:182mm;max-width:none;min-height:273mm;margin:0 auto;padding:10mm!important;border-radius:0!important}
+.fishery-application .paper-choice-row{display:grid;grid-template-columns:max-content max-content max-content minmax(0,1fr);align-items:center;gap:2px 7px;flex-wrap:nowrap;min-height:20px;font-size:8pt}
+.fishery-application .paper-choice-row>.paper-options{display:flex;flex-wrap:nowrap;gap:3px 8px;min-width:0;white-space:nowrap}
+.fishery-application .paper-choice-row>.paper-options>.paper-option+.paper-option{margin-left:0}
+.fishery-application .paper-choice-row .paper-option{gap:4px;padding:0 1px;font-size:8pt}
+.fishery-application .paper-choice-row .paper-inline-label{margin-left:3px;font-size:8pt;white-space:nowrap}
+.fishery-application .paper-choice-row .paper-civil{justify-content:space-between}
+.fishery-application .paper-property-location{grid-template-columns:minmax(0,1fr);gap:0;margin-top:2px}
+.fishery-application .paper-property-location>label{grid-template-columns:minmax(0,1fr);font-size:8pt}
+.fishery-application .paper-insured-amount{width:52%;min-height:18px;gap:5px}
+.fishery-application .paper-purchase{gap:0;margin:2px 0 0 23%;width:75%;max-width:none}
+.fishery-application .paper-purchase>strong{margin-left:-30.67%}
+.fishery-application .paper-purchase>label{grid-template-columns:65px minmax(0,1fr);min-height:18px;gap:5px;font-size:8pt}
+.fishery-application .paper-period-row{grid-template-columns:48mm minmax(0,1fr) minmax(0,1fr);min-height:19px;gap:5px;font-size:8pt}
+.fishery-application .paper-period-row input{min-height:17px!important;padding:0 2px!important;font-size:8pt!important}
+.fishery-application .paper-signatures{grid-template-columns:1fr 1fr;align-items:end;gap:25px;margin:10px 4% 0;font-size:8pt}
+.fishery-application .paper-applicant-signature{justify-self:center}
+.fishery-application-actions{position:static!important;inset:auto!important;z-index:auto!important;display:flex;justify-content:flex-end;gap:12px;max-width:none;margin:12px 0 0;padding:12px 0 0;border-top:1px solid #d7e0da;background:transparent;box-shadow:none}
+@media(max-width:640px){
+ .fishery-application-viewport>.fishery-application{margin-left:0;margin-right:0}
+ .fishery-application .paper-choice-field{grid-template-columns:48mm minmax(0,1fr)}
+ .fishery-application .paper-property-location{grid-template-columns:minmax(0,1fr)}
+ .fishery-application .paper-purchase{width:75%;max-width:none;margin-left:23%}
+ .fishery-application .paper-purchase>strong{margin-left:-30.67%}
+ .fishery-application .paper-signatures{grid-template-columns:1fr 1fr;gap:25px;margin:10px 4% 0}
+ .fishery-application .paper-applicant-signature{justify-self:center}
+}
+@media print{
+ .fishery-application-viewport{width:auto;max-width:none;overflow:visible;padding:0}
+ .fishery-application-viewport>.fishery-application{width:182mm;min-height:273mm;margin:0 auto;padding:10mm!important}
+ .fishery-application-actions{display:none!important}
+}

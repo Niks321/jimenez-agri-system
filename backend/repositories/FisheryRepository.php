@@ -30,7 +30,7 @@ final class FisheryRepository
         ]);
     }
 
-    public function createApplication(array $data): void
+    public function createApplication(array $data): int
     {
         $connection = $this->database->connection();
         $connection->beginTransaction();
@@ -50,7 +50,7 @@ final class FisheryRepository
                 'barangay' => trim((string) ($data['barangay'] ?? '')) ?: null,
             ]);
             $fishermanId = (int) $connection->lastInsertId();
-            $fields = ['applicant_last_name', 'applicant_first_name', 'applicant_middle_name', 'fishermen_association', 'address', 'spouse_name', 'contact_number', 'sex', 'civil_status', 'beneficiary_name', 'beneficiary_relation', 'boat_type', 'boat_material', 'motor_number', 'chassis_number', 'usage_description', 'length_meters', 'breadth_meters', 'depth_meters', 'gross_tonnage', 'boat_age_years', 'boat_color', 'registration_number', 'or_number', 'or_date', 'location_of_property', 'desired_sum_insured', 'cover_from', 'cover_to', 'mortgage_to', 'mortgage_branch', 'mortgage_address', 'reviewed_by', 'application_date'];
+            $fields = ['applicant_last_name', 'applicant_first_name', 'applicant_middle_name', 'fishermen_association', 'address', 'spouse_name', 'contact_number', 'sex', 'civil_status', 'beneficiary_name', 'beneficiary_relation', 'boat_type', 'boat_material', 'motor_number', 'chassis_number', 'usage_description', 'other_description', 'length_meters', 'breadth_meters', 'breadth_meters_2', 'depth_meters', 'gross_tonnage', 'boat_age_years', 'boat_age_years_2', 'boat_color', 'registration_number', 'or_number', 'or_date', 'location_of_property', 'desired_sum_insured', 'cover_from', 'cover_to', 'mortgage_to', 'mortgage_branch', 'mortgage_address', 'reviewed_by', 'review_date', 'application_date'];
             $columns = implode(', ', array_merge(['fisherman_id'], $fields));
             $placeholders = ':' . implode(', :', array_merge(['fisherman_id'], $fields));
             $values = ['fisherman_id' => $fishermanId, 'application_date' => $data['application_date'] ?: date('Y-m-d')];
@@ -62,6 +62,7 @@ final class FisheryRepository
             $statement = $connection->prepare("INSERT INTO fishery_applications ($columns) VALUES ($placeholders)");
             $statement->execute($values);
             $connection->commit();
+            return $fishermanId;
         } catch (Throwable $exception) {
             $connection->rollBack();
             throw $exception;
@@ -86,20 +87,18 @@ final class FisheryRepository
         $connection->beginTransaction();
         try {
             $fisherman = $connection->prepare(
-                'UPDATE fishermen SET rsbsa_number = :rsbsa_number, registration_number = :registration_number, first_name = :first_name, middle_name = :middle_name, last_name = :last_name, phone = :phone, address = :address, barangay = :barangay WHERE id = :fisherman_id'
+                'UPDATE fishermen SET registration_number = :registration_number, first_name = :first_name, middle_name = :middle_name, last_name = :last_name, phone = :phone, address = :address WHERE id = :fisherman_id'
             );
             $fisherman->execute([
                 'fisherman_id' => $fishermanId,
-                'rsbsa_number' => trim((string) ($data['rsbsa_number'] ?? '')) ?: null,
                 'registration_number' => trim((string) ($data['registration_number'] ?? '')) ?: null,
                 'first_name' => trim((string) $data['applicant_first_name']),
                 'middle_name' => trim((string) ($data['applicant_middle_name'] ?? '')) ?: null,
                 'last_name' => trim((string) $data['applicant_last_name']),
                 'phone' => trim((string) ($data['contact_number'] ?? '')) ?: null,
                 'address' => trim((string) ($data['address'] ?? '')) ?: null,
-                'barangay' => trim((string) ($data['barangay'] ?? '')) ?: null,
             ]);
-            $fields = ['applicant_last_name', 'applicant_first_name', 'applicant_middle_name', 'fishermen_association', 'address', 'spouse_name', 'contact_number', 'sex', 'civil_status', 'beneficiary_name', 'beneficiary_relation', 'boat_type', 'boat_material', 'motor_number', 'chassis_number', 'usage_description', 'length_meters', 'breadth_meters', 'depth_meters', 'gross_tonnage', 'boat_age_years', 'boat_color', 'registration_number', 'or_number', 'or_date', 'location_of_property', 'desired_sum_insured', 'cover_from', 'cover_to', 'mortgage_to', 'mortgage_branch', 'mortgage_address', 'reviewed_by', 'application_date'];
+            $fields = ['applicant_last_name', 'applicant_first_name', 'applicant_middle_name', 'fishermen_association', 'address', 'spouse_name', 'contact_number', 'sex', 'civil_status', 'beneficiary_name', 'beneficiary_relation', 'boat_type', 'boat_material', 'motor_number', 'chassis_number', 'usage_description', 'other_description', 'length_meters', 'breadth_meters', 'breadth_meters_2', 'depth_meters', 'gross_tonnage', 'boat_age_years', 'boat_age_years_2', 'boat_color', 'registration_number', 'or_number', 'or_date', 'location_of_property', 'desired_sum_insured', 'cover_from', 'cover_to', 'mortgage_to', 'mortgage_branch', 'mortgage_address', 'reviewed_by', 'review_date', 'application_date'];
             $values = ['fisherman_id' => $fishermanId, 'application_date' => $data['application_date'] ?: date('Y-m-d')];
             foreach ($fields as $field) {
                 if (!array_key_exists($field, $values)) {
@@ -154,9 +153,9 @@ final class FisheryRepository
         $statement = $this->database->connection()->prepare(
             'SELECT f.id, f.rsbsa_number, f.registration_number AS fisher_registration_number, f.first_name, f.middle_name, f.last_name, f.barangay, f.status, '
             . 'a.fishermen_association, a.address, a.spouse_name, a.contact_number, a.sex, a.civil_status, a.beneficiary_name, a.beneficiary_relation, '
-            . 'a.boat_type, a.boat_material, a.motor_number, a.chassis_number, a.usage_description, a.length_meters, a.breadth_meters, a.depth_meters, '
-            . 'a.gross_tonnage, a.boat_age_years, a.boat_color, a.registration_number AS boat_registration_number, a.or_number, a.or_date, '
-            . 'a.location_of_property, a.desired_sum_insured, a.cover_from, a.cover_to, a.mortgage_to, a.mortgage_branch, a.mortgage_address, a.application_date '
+            . 'a.boat_type, a.boat_material, a.motor_number, a.chassis_number, a.usage_description, a.other_description, a.length_meters, a.breadth_meters, a.breadth_meters_2, a.depth_meters, '
+            . 'a.gross_tonnage, a.boat_age_years, a.boat_age_years_2, a.boat_color, a.registration_number AS boat_registration_number, a.or_number, a.or_date, '
+            . 'a.location_of_property, a.desired_sum_insured, a.cover_from, a.cover_to, a.mortgage_to, a.mortgage_branch, a.mortgage_address, a.reviewed_by, a.review_date, a.application_date '
             . 'FROM fishermen f LEFT JOIN fishery_applications a ON a.id = (SELECT MAX(latest.id) FROM fishery_applications latest WHERE latest.fisherman_id = f.id) '
             . 'WHERE f.status = :status AND (f.rsbsa_number LIKE :search_rsbsa OR f.registration_number LIKE :search_registration OR f.last_name LIKE :search_last_name OR f.first_name LIKE :search_first_name OR f.barangay LIKE :search_barangay) '
             . 'ORDER BY f.last_name, f.first_name'
@@ -193,9 +192,16 @@ final class FisheryRepository
         return $this->database->connection()->query("SELECT id, name FROM fishing_gears WHERE status = 'active' ORDER BY name")->fetchAll();
     }
 
-    public function recentCatches(int $limit = 8): array
+    public function catches(): array
     {
-        $limit = max(1, min(50, $limit));
-        return $this->database->connection()->query("SELECT * FROM fish_catch ORDER BY id DESC LIMIT {$limit}")->fetchAll();
+        return $this->database->connection()->query(
+            "SELECT c.*, CONCAT_WS(' ', f.first_name, f.middle_name, f.last_name) AS fisherman_name, "
+            . 's.common_name AS species_name, COALESCE(b.name, b.registration_number) AS boat_name, g.name AS gear_name '
+            . 'FROM fish_catch c JOIN fishermen f ON f.id = c.fisherman_id '
+            . 'JOIN fish_species s ON s.id = c.species_id '
+            . 'LEFT JOIN boats b ON b.id = c.boat_id '
+            . 'LEFT JOIN fishing_gears g ON g.id = c.gear_id '
+            . 'ORDER BY c.catch_date DESC, c.id DESC'
+        )->fetchAll();
     }
 }

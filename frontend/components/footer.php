@@ -144,6 +144,7 @@ $assetBase = $assetBase ?? 'assets';
   </dialog>
 
   <!-- External Application Logic Script -->
-  <script src="<?= $assetBase ?>/js/app.js?v=16"></script>
+  <?php $appScriptPath = __DIR__ . '/../../public/assets/js/app.js'; ?>
+  <script src="<?= htmlspecialchars($assetBase, ENT_QUOTES, 'UTF-8') ?>/js/app.js?v=<?= is_file($appScriptPath) ? (int) filemtime($appScriptPath) : 1 ?>"></script>
 </body>
 </html>

@@ -24,8 +24,8 @@
     }
 }
 
-html:has(aside[aria-label="Personnel navigation"]),
-body:has(aside[aria-label="Personnel navigation"]) {
+html:has(#personnel-sidebar),
+body:has(#personnel-sidebar) {
     max-width: 100%;
 }
 
@@ -34,30 +34,511 @@ body:has(aside[aria-label="Personnel navigation"]) {
 }
 
 @media (min-width: 1024px) {
-    body:has(aside[aria-label="Personnel navigation"]) header,
-    body:has(aside[aria-label="Personnel navigation"]) main,
-    body:has(aside[aria-label="Personnel navigation"]) footer {
+    body:has(#personnel-sidebar) header,
+    body:has(#personnel-sidebar) main,
+    body:has(#personnel-sidebar) footer {
         margin-left: 16rem;
         width: calc(100vw - 16rem);
         max-width: calc(100vw - 16rem);
         box-sizing: border-box;
     }
+
+    body:has(#personnel-sidebar.hidden) header,
+    body:has(#personnel-sidebar.hidden) main,
+    body:has(#personnel-sidebar.hidden) footer {
+        margin-left: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
 }
 
 @media (max-width: 1023px) {
-    body:has(aside[aria-label="Personnel navigation"]) header,
-    body:has(aside[aria-label="Personnel navigation"]) main,
-    body:has(aside[aria-label="Personnel navigation"]) footer {
+    body:has(#personnel-sidebar) header,
+    body:has(#personnel-sidebar) main,
+    body:has(#personnel-sidebar) footer {
         margin-left: 0;
         width: 100%;
         max-width: 100%;
     }
 
     #personnel-sidebar {
-        top: 5rem;
+        top: 6rem;
     }
 
     #personnel-sidebar-overlay {
-        top: 5rem;
+        top: 6rem;
     }
 }
+
+/* Fishery workspace layout and contained, readable data tables. */
+body:has(aside[aria-label="Fishery navigation"]) #personnel-sidebar nav > a {
+    width: 100%;
+    min-width: 0;
+    line-height: 1.35;
+    white-space: normal;
+}
+
+body:has(aside[aria-label="Fishery navigation"]) #personnel-sidebar nav > a .material-symbols-outlined {
+    flex: 0 0 auto;
+}
+
+.fishery-status-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    border-bottom: 1px solid #d8e1d8;
+    padding-bottom: .75rem;
+}
+
+.fishery-status-tabs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: .65rem 1rem;
+    border: 1px solid #d2ddd3;
+    border-radius: .75rem;
+    color: #365344;
+    background: #fff;
+    font-size: .875rem;
+    font-weight: 700;
+}
+
+.fishery-status-tabs a[aria-current="page"] {
+    border-color: #1f6845;
+    color: #fff;
+    background: #1f6845;
+}
+
+.fishery-profile-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.fishery-profile-table th,
+.fishery-profile-table td {
+    border-bottom: 1px solid #e4e9e4;
+    padding: .85rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.45;
+}
+
+.fishery-profile-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #f3f6f2;
+    color: #43564a;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.fishery-profile-table td {
+    overflow-wrap: anywhere;
+}
+
+.fishery-profile-table td span {
+    display: block;
+    margin-top: .25rem;
+    color: #637168;
+    font-size: .78rem;
+}
+
+.fishery-main {
+    min-height: calc(100vh - 6rem);
+}
+
+.fishery-status {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: .25rem .65rem;
+    font-size: .72rem;
+    font-weight: 800;
+}
+
+.fishery-status-active {
+    background: #e2f2e7;
+    color: #17613b;
+}
+
+.fishery-status-inactive {
+    background: #eef0ed;
+    color: #58645b;
+}
+
+.fishery-profile-fact {
+    min-width: 0;
+    border-radius: .65rem;
+    background: #f5f7f4;
+    padding: .75rem;
+}
+
+.fishery-profile-fact span,
+.fishery-profile-fact strong {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.fishery-profile-fact span {
+    color: #68756b;
+    font-size: .68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.fishery-profile-fact strong {
+    margin-top: .25rem;
+    font-size: .85rem;
+}
+
+.fishery-search {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+    width: min(100%, 38rem);
+}
+
+.fishery-search input {
+    flex: 1 1 15rem;
+    min-width: 0;
+    min-height: 2.75rem;
+    border: 1px solid #cbd6cc;
+    border-radius: .65rem;
+    padding: .65rem .85rem;
+}
+
+.fishery-search button,
+.fishery-search a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1f6845;
+    border-radius: .65rem;
+    padding: .6rem 1rem;
+    color: #fff;
+    background: #1f6845;
+    font-size: .875rem;
+    font-weight: 700;
+}
+
+.fishery-search a {
+    color: #1f6845;
+    background: #fff;
+}
+
+.fishery-catch-form > .grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+}
+
+@media (max-width: 639px) {
+    .fishery-search {
+        width: 100%;
+    }
+
+    .fishery-search input {
+        flex-basis: 100%;
+    }
+}
+
+/* Stable staff shell: keep the title and account actions in separate flex columns. */
+.personnel-header-inner {
+    justify-content: space-between !important;
+    gap: 1rem;
+    padding-left: 4.5rem !important;
+    padding-right: 1rem !important;
+    text-align: left !important;
+}
+
+.personnel-header-inner > div:first-child {
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    flex: 1 1 auto;
+    text-align: left;
+}
+
+.personnel-header-actions {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    flex: 0 0 auto;
+    transform: none !important;
+}
+
+#personnel-nav-reopen {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 639px) {
+    .personnel-header-inner {
+        min-height: 6rem !important;
+        padding-left: 3.75rem !important;
+        padding-right: .75rem !important;
+        gap: .5rem;
+    }
+
+    .personnel-header-inner > div:first-child {
+        max-width: none;
+    }
+
+    .personnel-header-actions a {
+        min-height: 2.5rem;
+        padding: .5rem .6rem;
+        white-space: nowrap;
+    }
+}
+
+.fishery-field {
+    display: grid;
+    min-width: 0;
+    gap: .4rem;
+    color: #34483b;
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.fishery-field .form-input-custom {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.8rem;
+    border: 1px solid #cbd6cc;
+    border-radius: .65rem;
+    background: #fff;
+    padding: .65rem .8rem;
+    color: #24342a;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.fishery-primary-button,
+.fishery-secondary-button {
+    display: inline-flex;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    border: 1px solid #1f6845;
+    border-radius: .65rem;
+    padding: .7rem 1.15rem;
+    background: #1f6845;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.fishery-secondary-button {
+    background: #fff;
+    color: #1f6845;
+}
+
+.fishery-danger-button {
+    display: inline-flex;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #a33e36;
+    border-radius: .65rem;
+    padding: .7rem 1rem;
+    background: #fff;
+    color: #8d3029;
+    font-size: .875rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.fishery-application-actions {
+    position: sticky;
+    bottom: .75rem;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .65rem;
+    margin: 1.25rem -1rem -1rem;
+    border-top: 1px solid #dfe5df;
+    background: rgb(255 255 255 / 96%);
+    padding: .85rem 1rem;
+}
+
+.fishery-catch-table th,
+.fishery-catch-table td {
+    border-bottom: 1px solid #e5eae5;
+    padding: .85rem 1rem;
+    vertical-align: top;
+}
+
+.fishery-catch-table th {
+    position: sticky;
+    top: 0;
+    background: #f3f6f2;
+    color: #43564a;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+@media print {
+    body:has(.fishery-application) .fishery-main {
+        min-height: 0 !important;
+    }
+
+    .fishery-application-actions {
+        display: none !important;
+    }
+}
+
+/* Persistent Fishery sidebar workflow links */
+.fishery-sidebar-subnav{display:flex;flex-direction:column;gap:.25rem;margin:-.35rem 0 .35rem 1.2rem;padding-left:.75rem;border-left:1px solid rgba(255,255,255,.3);min-width:0}
+.fishery-sidebar-subnav a{display:block;min-width:0;border-radius:.5rem;padding:.5rem .65rem;color:rgba(255,255,255,.78);font-size:.8125rem;line-height:1.25;overflow-wrap:anywhere;text-decoration:none}
+.fishery-sidebar-subnav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.fishery-sidebar-subnav a[aria-current="page"]{background:#d8e9d4;color:#16452b;font-weight:700}
+/* Clear feedback and compact, legible fishery workspace panels. */
+.fishery-empty-state{display:flex;min-height:13rem;flex-direction:column;align-items:center;justify-content:center;border:1px dashed #cbd6cc;border-radius:1rem;padding:2rem;text-align:center;background:#fbfcfa}
+.fishery-empty-state>.material-symbols-outlined{margin-bottom:.65rem;color:#66816f;font-size:2rem}
+.fishery-panel{min-width:0}
+.fishery-panel>div{min-width:0}
+.fishery-profile-fact{height:100%}
+.fishery-profile-fact strong{line-height:1.4}
+.fishery-catch-table{border-collapse:separate;border-spacing:0}
+.fishery-catch-table td{max-width:18rem;overflow-wrap:anywhere}
+.fishery-catch-table tbody tr:hover{background:#f7faf6}
+.fishery-catch-form textarea{resize:vertical}
+.fishery-catch-form :is(input,select,textarea):focus,.fishery-search input:focus{outline:3px solid rgb(31 104 69 / 18%);outline-offset:1px;border-color:#1f6845}
+.fishery-primary-button:hover,.fishery-secondary-button:hover,.fishery-danger-button:hover{filter:brightness(.96)}
+.fishery-primary-button:focus-visible,.fishery-secondary-button:focus-visible,.fishery-danger-button:focus-visible,.fishery-search :is(button,a):focus-visible,.fishery-sidebar-subnav a:focus-visible{outline:3px solid #d1a928;outline-offset:2px}
+.fishery-application .screen-only.rounded-xl{border:1px solid #d8e1d8!important}
+.fishery-application .paper-section+.paper-section{border-top:1px solid #e5e5e5;padding-top:8px}
+.fishery-application .paper-labeled-row input:focus,.fishery-application .paper-name-grid input:focus,.fishery-application .paper-details-grid input:focus,.fishery-application .paper-signatures input:focus{outline:2px solid rgb(31 104 69 / 25%);outline-offset:1px}
+.fishery-application .paper-choice-row input:focus-visible{outline:2px solid #1f6845;outline-offset:2px}
+@media(max-width:639px){.fishery-profile-fact{padding:.7rem}.fishery-catch-table th,.fishery-catch-table td{padding:.7rem}.fishery-application .paper-signatures{grid-template-columns:1fr}}
+body:has(aside[aria-label="Fishery navigation"]) .fishery-metric-card{display:block;height:100%;min-width:0;border-radius:1rem;box-shadow:0 1px 2px rgb(16 24 16 / 5%);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+body:has(aside[aria-label="Fishery navigation"]) a.fishery-metric-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgb(16 24 16 / 8%)}
+body:has(aside[aria-label="Fishery navigation"]) .fishery-metric-card .material-symbols-outlined{display:inline-flex;width:2.75rem;height:2.75rem;align-items:center;justify-content:center;border-radius:.8rem;background:#edf5ed}
+.fishery-profile-table{border-collapse:separate;border-spacing:0}
+.fishery-profile-table td{padding:.8rem 1rem;border-bottom:1px solid #e4e9e4;vertical-align:middle;line-height:1.4;overflow-wrap:anywhere}
+.fishery-profile-table tbody tr:hover{background:#f6f9f5}
+.fishery-details-dialog{width:min(58rem,calc(100vw - 2rem));max-width:none;max-height:min(85vh,52rem);overflow:auto;border:1px solid #d5dfd5;border-radius:1rem;padding:0;background:#fff;color:#1d2b21;box-shadow:0 24px 80px rgb(0 0 0 / 24%)}
+.fishery-details-dialog::backdrop{background:rgb(11 22 14 / 58%);backdrop-filter:blur(2px)}
+.fishery-details-dialog-header{position:sticky;top:0;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;border-bottom:1px solid #e1e8e1;background:#fff;padding:1.25rem 1.5rem}
+.fishery-details-dialog-header h2{margin-top:.25rem;font-size:1.35rem;font-weight:800;line-height:1.25;overflow-wrap:anywhere}
+.fishery-dialog-close{display:inline-flex;width:2.5rem;height:2.5rem;flex:0 0 auto;align-items:center;justify-content:center;border:1px solid #d5dfd5;border-radius:.65rem;background:#fff;color:#304637;font-size:1.5rem;line-height:1;cursor:pointer}
+.fishery-details-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#e8ede8;padding:1px}
+.fishery-details-grid>div{min-width:0;background:#fff;padding:.85rem 1rem}
+.fishery-details-grid dt{color:#657368;font-size:.7rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.fishery-details-grid dd{margin-top:.3rem;overflow-wrap:anywhere;font-size:.9rem;line-height:1.45}
+.fishery-details-dialog-actions{display:flex;align-items:center;justify-content:flex-end;gap:.65rem;border-top:1px solid #e1e8e1;padding:1rem 1.5rem}
+.fishery-details-dialog-actions form{margin:0}
+.fishery-details-dialog :is(button,a):focus-visible{outline:3px solid #d1a928;outline-offset:2px}
+@media(max-width:760px){.fishery-details-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fishery-details-dialog-header{padding:1rem}.fishery-details-dialog-actions{padding:1rem}}
+@media(max-width:480px){.fishery-details-dialog{width:calc(100vw - 1rem);max-height:90vh}.fishery-details-grid{grid-template-columns:1fr}.fishery-details-dialog-actions{align-items:stretch;flex-direction:column}.fishery-details-dialog-actions :is(a,button){width:100%}}
+.fishery-profile-name{padding:0;border:0;background:transparent;color:#1c5739;font-weight:800;text-align:left;cursor:pointer;overflow-wrap:anywhere}
+.fishery-profile-name:hover{text-decoration:underline}
+.fishery-profile-name:focus-visible{outline:3px solid #d1a928;outline-offset:3px;border-radius:2px}
+/* Explicit choice marks and fallback spacing for the printed PCIC form. */
+.fishery-application .paper-options{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;column-gap:20px;row-gap:8px}
+.fishery-application .paper-options>.paper-option+.paper-option{margin-left:16px}
+.fishery-application .paper-option{position:relative;display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap;line-height:1.4}
+.fishery-application .paper-option input{position:absolute!important;left:2px;top:50%;z-index:1;width:16px!important;height:16px!important;min-width:16px;min-height:16px!important;margin:0!important;padding:0!important;opacity:0;cursor:pointer}
+.fishery-application .paper-option-mark{position:relative;display:inline-flex;width:14px;height:14px;flex:0 0 14px;align-items:center;justify-content:center;border:1px solid #111;border-radius:50%;background:#fff}
+.fishery-application .paper-option-square .paper-option-mark{border-radius:1px}
+.fishery-application .paper-option:not(.paper-option-square) input:checked+.paper-option-mark:after{width:6px;height:6px;border-radius:50%;background:#111;content:""}
+.fishery-application .paper-option-square input:checked+.paper-option-mark:after{position:absolute;top:0;left:4px;width:4px;height:8px;border:solid #111;border-width:0 1.5px 1.5px 0;content:"";transform:rotate(45deg)}
+.fishery-application .paper-option input:focus-visible+.paper-option-mark{outline:2px solid #1f6845;outline-offset:2px}
+@media print{
+ .fishery-application .paper-options{column-gap:20px;row-gap:5px}
+ .fishery-application .paper-options>.paper-option+.paper-option{margin-left:14px}
+ .fishery-application .paper-option{gap:7px;padding:1px 2px;font-size:8pt}
+ .fishery-application .paper-option input{width:14px!important;height:14px!important;min-width:14px;min-height:14px!important}
+ .fishery-application .paper-option-mark{width:12px;height:12px;flex-basis:12px}
+ .fishery-application .paper-option:not(.paper-option-square) input:checked+.paper-option-mark:after{width:5px;height:5px}
+ .fishery-application .paper-option-square input:checked+.paper-option-mark:after{left:3px;width:4px;height:7px}
+}
+/* Catch form groups keep every field caption visibly above its control. */
+.fishery-catch-form{display:flex;flex-direction:column;gap:1rem}
+.fishery-catch-group{min-width:0;margin:0;border:1px solid #e0e7e0;border-radius:.9rem;padding:1rem;background:#fff}
+.fishery-catch-group legend{padding:0 .4rem;color:#294b36;font-size:.9rem;font-weight:800}
+.fishery-catch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.fishery-catch-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fishery-field-label{display:flex;align-items:center;justify-content:space-between;gap:.5rem;min-height:1.4rem}
+.fishery-required,.fishery-optional{flex:0 0 auto;color:#7b5141;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.fishery-optional{color:#718075}
+.fishery-required-note{display:inline-flex;align-items:center;gap:.35rem;border:1px solid #e7c7bf;border-radius:999px;background:#fff8f6;padding:.4rem .7rem;color:#834536;font-size:.72rem;font-weight:700}
+.fishery-required-note>span{font-size:1rem}
+.fishery-catch-submit{display:flex;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid #e3e9e3;padding-top:1rem;color:#627067;font-size:.8rem}
+.fishery-details-table-wrap{padding:1rem 1.5rem;overflow-x:auto}
+.fishery-details-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid #dfe7df;border-radius:.7rem;overflow:hidden;font-size:.875rem}
+.fishery-details-table thead th{background:#edf3ed;color:#526156;font-size:.7rem;text-align:left;text-transform:uppercase;letter-spacing:.05em}
+.fishery-details-table th,.fishery-details-table td{padding:.7rem .85rem;border-bottom:1px solid #e5ebe5;vertical-align:top}
+.fishery-details-table tbody th{width:34%;background:#f8faf7;color:#425447;font-weight:700;text-align:left}
+.fishery-details-table td{overflow-wrap:anywhere;line-height:1.45}
+.fishery-details-table tbody tr:last-child th,.fishery-details-table tbody tr:last-child td{border-bottom:0}
+@media(max-width:640px){.fishery-catch-grid,.fishery-catch-grid-3{grid-template-columns:1fr}.fishery-catch-group{padding:.85rem}.fishery-catch-submit{align-items:stretch;flex-direction:column}.fishery-details-table-wrap{padding:.75rem}.fishery-details-table th,.fishery-details-table td{padding:.6rem}}
+/* Fishery analytics dashboard */
+.fishery-dashboard-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:1.25rem;margin-bottom:1.5rem}
+.fishery-dashboard-intro h1{margin-top:.45rem;color:#1b2b20;font-size:clamp(1.8rem,3vw,2.35rem);font-weight:850;line-height:1.1}
+.fishery-dashboard-intro p:last-child{margin-top:.55rem;color:#68766c;font-size:.92rem}
+.fishery-dashboard-entry{display:inline-flex;min-height:2.8rem;flex:0 0 auto;align-items:center;justify-content:center;gap:.5rem;border-radius:.7rem;background:#1f6845;padding:.7rem 1rem;color:#fff;font-size:.85rem;font-weight:800;text-decoration:none}
+.fishery-dashboard-entry:hover{background:#18553a}
+.fishery-dashboard-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-bottom:1rem}
+.fishery-analytics-metric{display:grid;min-width:0;grid-template-columns:2.75rem 1fr;grid-template-rows:auto auto auto;align-items:center;column-gap:.8rem;border:1px solid #e0e7e0;border-radius:1rem;background:#fff;padding:1rem 1.1rem;text-decoration:none;box-shadow:0 1px 2px rgb(20 35 22 / 4%)}
+.fishery-analytics-metric>.material-symbols-outlined{grid-column:1;grid-row:1/4;display:flex;width:2.75rem;height:2.75rem;align-items:center;justify-content:center;border-radius:.8rem;background:#edf4ed;color:#236444;font-size:1.5rem}
+.fishery-analytics-metric>span:nth-child(2){color:#68766c;font-size:.73rem;font-weight:750;letter-spacing:.025em}
+.fishery-analytics-metric>strong{margin-top:.15rem;color:#1c2d21;font-size:1.8rem;font-weight:850;line-height:1.1}
+.fishery-analytics-metric>small{margin-top:.25rem;color:#758178;font-size:.7rem}
+a.fishery-analytics-metric:hover{border-color:#76a187;transform:translateY(-1px);box-shadow:0 6px 18px rgb(20 35 22 / 8%)}
+.fishery-analytics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.fishery-analytics-card{min-width:0;overflow:hidden;border:1px solid #e0e7e0;border-radius:1rem;background:#fff;padding:1.15rem 1.25rem;box-shadow:0 1px 2px rgb(20 35 22 / 4%)}
+.fishery-analytics-trend{grid-column:span 2}
+.fishery-analytics-card-heading{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.85rem}
+.fishery-analytics-card-heading p{color:#718076;font-size:.68rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.fishery-analytics-card-heading h2{margin-top:.18rem;color:#22372a;font-size:1.05rem;font-weight:800;line-height:1.25}
+.fishery-analytics-card-heading>a{flex:0 0 auto;color:#1d6844;font-size:.76rem;font-weight:750;text-decoration:none}
+.fishery-analytics-card-heading>a:hover{text-decoration:underline}
+.fishery-chart-scroll{width:100%;overflow-x:auto}
+.fishery-line-chart{display:block;width:100%;min-width:620px;height:auto;overflow:visible}
+.fishery-chart-gridline{stroke:#e8eee8;stroke-width:1}
+.fishery-chart-axis-label,.fishery-chart-month{fill:#728075;font-family:Inter,Arial,sans-serif;font-size:11px}
+.fishery-chart-line{fill:none;stroke:#28764e;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.fishery-chart-point{fill:#fff;stroke:#28764e;stroke-width:3}
+.fishery-chart-empty{display:flex;min-height:13rem;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border:1px dashed #d4ded4;border-radius:.8rem;background:#fafcf9;padding:1.25rem;text-align:center;color:#6b786e;font-size:.85rem}
+.fishery-chart-empty>.material-symbols-outlined{color:#63836d;font-size:2rem}
+.fishery-chart-empty a{color:#1c6844;font-weight:800;text-decoration:underline}
+.fishery-chart-empty.compact{min-height:9rem;border:0;background:transparent}
+.fishery-status-chart{display:flex;min-height:12rem;align-items:center;justify-content:center;gap:2rem;padding:.5rem}
+.fishery-status-donut{display:grid;width:9.5rem;height:9.5rem;flex:0 0 auto;place-items:center;border-radius:50%;background:conic-gradient(#28764e var(--fishery-active-share,0%),#dce5dc 0)}
+.fishery-status-donut:before{grid-area:1/1;width:7rem;height:7rem;border-radius:50%;background:#fff;content:""}
+.fishery-status-donut>span{z-index:1;grid-area:1/1;color:#22372a;font-size:1.5rem;font-weight:850;text-align:center}
+.fishery-status-donut small{display:block;color:#718076;font-size:.68rem;font-weight:700}
+.fishery-status-legend{display:grid;gap:.8rem;min-width:8rem}
+.fishery-status-legend>a{display:grid;grid-template-columns:.7rem 1fr auto;align-items:center;gap:.55rem;color:#57665b;font-size:.8rem;text-decoration:none}
+.fishery-status-legend i{width:.65rem;height:.65rem;border-radius:50%;background:#28764e}
+.fishery-status-legend i.inactive{background:#b9c6ba}
+.fishery-status-legend strong{color:#263b2d;font-size:.9rem}
+.fishery-horizontal-chart{display:grid;gap:1rem;padding:.45rem 0}
+.fishery-bar-row>div:first-child{display:flex;justify-content:space-between;gap:.75rem;margin-bottom:.35rem;color:#56665b;font-size:.8rem}
+.fishery-bar-row>div:first-child strong{color:#263b2d;font-weight:800}
+.fishery-bar-track{height:.6rem;overflow:hidden;border-radius:999px;background:#edf1ed}
+.fishery-bar-track>span{display:block;height:100%;min-width:0;border-radius:inherit;background:linear-gradient(90deg,#72a77e,#28764e)}
+.fishery-bar-submitted>span{background:linear-gradient(90deg,#7da8d0,#477eaf)}
+.fishery-bar-reviewed>span{background:linear-gradient(90deg,#73aa83,#28764e)}
+.fishery-bar-draft>span{background:linear-gradient(90deg,#c5ab72,#9a7935)}
+.fishery-analytics-footnote{margin-top:.8rem;color:#7a867d;font-size:.7rem}
+.fishery-top-list{display:grid;gap:.2rem;margin:0;padding:0;list-style:none}
+.fishery-top-list li{display:grid;grid-template-columns:2rem minmax(0,1fr) auto;align-items:center;gap:.65rem;border-bottom:1px solid #edf0ed;padding:.75rem .1rem}
+.fishery-top-list li:last-child{border-bottom:0}
+.fishery-rank{display:grid;width:1.8rem;height:1.8rem;place-items:center;border-radius:.55rem;background:#edf4ed;color:#286344;font-size:.75rem;font-weight:850}
+.fishery-top-name{min-width:0;overflow-wrap:anywhere;color:#35493a;font-size:.83rem;font-weight:700}
+.fishery-top-list li>strong{color:#263b2d;font-size:.86rem;white-space:nowrap}
+.fishery-top-list li>strong small{color:#78847b;font-size:.68rem;font-weight:600}
+@media(max-width:900px){.fishery-dashboard-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.fishery-dashboard-intro{align-items:stretch;flex-direction:column}.fishery-dashboard-entry{align-self:flex-start}.fishery-analytics-grid{grid-template-columns:1fr}.fishery-analytics-trend{grid-column:auto}.fishery-analytics-card{padding:1rem}.fishery-status-chart{justify-content:space-around;gap:1rem}.fishery-status-donut{width:8rem;height:8rem}.fishery-status-donut:before{width:5.8rem;height:5.8rem}}
+@media(max-width:420px){.fishery-dashboard-metrics{grid-template-columns:1fr}.fishery-analytics-card-heading{align-items:flex-start}.fishery-analytics-card-heading>a{font-size:.68rem}.fishery-status-chart{flex-direction:column}.fishery-status-legend{width:100%}}

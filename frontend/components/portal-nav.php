@@ -1,8 +1,6 @@
 <?php
 $activePage = $activePage ?? '';
 $department = $_SESSION['user']['department'] ?? null;
-$fisherySection = $fisherySection ?? 'active';
-$fisheryNavigation = $fisheryNavigation ?? [];
 
 $workspace = match ($department) {
 	'crop' => [
@@ -23,8 +21,10 @@ $workspace = match ($department) {
 	'fishery' => [
 		'label' => 'Fishery',
 		'items' => [
-			'dashboard' => ['Overview', 'workspace.php?page=fishery/dashboard', 'dashboard'],
-			'fisheries' => ['Fishery records', 'workspace.php?page=fishery/records', 'set_meal'],
+			'dashboard' => ['Dashboard', 'workspace.php?page=fishery/dashboard', 'dashboard'],
+			'profile' => ['Fisherman Profile', 'workspace.php?page=fishery/profile&section=active', 'groups'],
+			'catches' => ['Fish Catches / Records', 'workspace.php?page=fishery/catches&catch_view=entry', 'set_meal'],
+			'application' => ['Fisherman Application Form', 'workspace.php?page=fishery/application', 'description'],
 		],
 	],
 	'livestock' => [
@@ -62,14 +62,18 @@ $personnelHeaderSubtitle = $personnelHeaderSubtitle ?? $workspace['label'] . ' d
 				</button>
 			</div>
 		</div>
-		<nav class="flex flex-wrap lg:flex-col gap-2 flex-1">
+		<nav class="flex flex-col gap-2 flex-1">
 			<?php foreach ($navItems as $key => [$label, $url, $icon]): ?>
-				<a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition-colors <?= $activePage === $key ? 'bg-secondary-fixed text-on-secondary-fixed' : 'text-white/85 hover:bg-white/10 hover:text-white' ?>" <?= $activePage === $key ? 'aria-current="page"' : '' ?>><span class="material-symbols-outlined text-base"><?= htmlspecialchars($icon, ENT_QUOTES, 'UTF-8') ?></span><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></a>
-				<?php if ($key === 'fisheries' && $activePage === 'fisheries'): ?>
-					<div class="ml-5 border-l border-white/25 pl-3 space-y-1" aria-label="Fishery navigation">
-						<?php foreach ($fisheryNavigation as $navSection => $item): ?>
-							<a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="block rounded-md px-3 py-2 text-xs font-semibold <?= $fisherySection === $navSection ? 'bg-secondary-fixed text-on-secondary-fixed' : 'text-white/75 hover:bg-white/10 hover:text-white' ?>" <?= $fisherySection === $navSection ? 'aria-current="page"' : '' ?>><?= htmlspecialchars($item['label']) ?></a>
-						<?php endforeach; ?>
+				<a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="inline-flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition-colors <?= $activePage === $key ? 'bg-secondary-fixed text-on-secondary-fixed' : 'text-white/85 hover:bg-white/10 hover:text-white' ?>" <?= $activePage === $key ? 'aria-current="page"' : '' ?>><span class="material-symbols-outlined text-base"><?= htmlspecialchars($icon, ENT_QUOTES, 'UTF-8') ?></span><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></a>
+				<?php if ($department === 'fishery' && $key === 'profile'): ?>
+					<div class="fishery-sidebar-subnav" aria-label="Fisherman status">
+						<a href="workspace.php?page=fishery/profile&amp;section=active" <?= ($fisherySection ?? 'active') === 'active' && $activePage === 'profile' ? 'aria-current="page"' : '' ?>>Active fisherman</a>
+						<a href="workspace.php?page=fishery/profile&amp;section=inactive" <?= ($fisherySection ?? 'active') === 'inactive' && $activePage === 'profile' ? 'aria-current="page"' : '' ?>>Inactive fisherman</a>
+					</div>
+				<?php elseif ($department === 'fishery' && $key === 'catches'): ?>
+					<div class="fishery-sidebar-subnav" aria-label="Catch records">
+						<a href="workspace.php?page=fishery/catches&amp;catch_view=entry" <?= ($fisheryCatchView ?? 'entry') === 'entry' && $activePage === 'catches' ? 'aria-current="page"' : '' ?>>Record a catch</a>
+						<a href="workspace.php?page=fishery/catches&amp;catch_view=records" <?= ($fisheryCatchView ?? 'entry') === 'records' && $activePage === 'catches' ? 'aria-current="page"' : '' ?>>Catch records</a>
 					</div>
 				<?php endif; ?>
 			<?php endforeach; ?>

@@ -8,14 +8,14 @@ final class FisheryService
     {
     }
 
-    public function saveApplication(array $data): void
+    public function saveApplication(array $data): int
     {
         $fishermanId = (int) ($data['fisherman_id'] ?? 0);
         if ($fishermanId > 0) {
             $this->repository->updateApplication($fishermanId, $data);
-            return;
+            return $fishermanId;
         }
-        $this->repository->createApplication($data);
+        return $this->repository->createApplication($data);
     }
 
     public function applicationForFisherman(int $fishermanId): ?array
@@ -61,8 +61,8 @@ final class FisheryService
         return $this->repository->gears();
     }
 
-    public function recentCatches(): array
+    public function catches(): array
     {
-        return $this->repository->recentCatches();
+        return $this->repository->catches();
     }
 }

@@ -5,35 +5,12 @@ require_once __DIR__ . '/../services/FisheryService.php';
 
 final class FisheryController
 {
+    private ?int $savedFishermanId = null;
+
     public function __construct(
         private FisheryService $service,
         private Csrf $csrf
     ) {
-    }
-
-    public static function navigation(): array
-    {
-        return [
-            'active' => ['label' => 'Active - Fisher Folk', 'url' => 'workspace.php?page=fishery/records&section=active'],
-            'inactive' => ['label' => 'Inactive - Fisher Folk', 'url' => 'workspace.php?page=fishery/records&section=inactive'],
-            'application' => ['label' => 'Application', 'url' => 'workspace.php?page=fishery/records&section=application'],
-            'monitoring' => ['label' => 'Catch Monitoring', 'url' => 'workspace.php?page=fishery/records&section=monitoring'],
-        ];
-    }
-
-    public static function sectionMeta(): array
-    {
-        return [
-            'active' => ['title' => 'Active Fisher Folk', 'subtitle' => 'Active fisherfolk registry', 'description' => 'Review registered fisherfolk who are currently active in the fishery program.'],
-            'inactive' => ['title' => 'Inactive Fisher Folk', 'subtitle' => 'Inactive fisherfolk registry', 'description' => 'Review fisherfolk records that are currently inactive in the fishery program.'],
-            'application' => ['title' => 'Fishery Application', 'subtitle' => 'Application data entry', 'description' => 'Complete the Fishing Boat Insurance Application form and print it for review.'],
-            'monitoring' => ['title' => 'Catch Monitoring', 'subtitle' => 'Fishery catch monitoring', 'description' => 'Record landing activity, catch volume, species, and estimated value.'],
-        ];
-    }
-
-    public static function validSection(mixed $section): string
-    {
-        return array_key_exists((string) $section, self::sectionMeta()) ? (string) $section : 'active';
     }
 
     public function handle(array $input): ?string
@@ -59,8 +36,13 @@ final class FisheryController
             return 'Applicant first name and last name are required.';
         }
 
-        $this->service->saveApplication($input);
+        $this->savedFishermanId = $this->service->saveApplication($input);
         return null;
+    }
+
+    public function savedFishermanId(): ?int
+    {
+        return $this->savedFishermanId;
     }
 
     public function registry(string $status, string $search = ''): array
@@ -93,8 +75,8 @@ final class FisheryController
         return $this->service->gears();
     }
 
-    public function recentCatches(): array
+    public function catches(): array
     {
-        return $this->service->recentCatches();
+        return $this->service->catches();
     }
 }

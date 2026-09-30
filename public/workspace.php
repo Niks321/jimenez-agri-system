@@ -29,7 +29,9 @@ $pagesByDepartment = [
 	],
 	'fishery' => [
 		'fishery/dashboard' => 'fisheries/dashboard.php',
-		'fishery/records' => 'fisheries/fishery.php',
+		'fishery/profile' => 'fisheries/fishermen.php',
+		'fishery/catches' => 'fisheries/fish-catch.php',
+		'fishery/application' => 'fisheries/application.php',
 	],
 	'livestock' => [
 		'livestock/dashboard' => 'livestock/dashboard.php',
