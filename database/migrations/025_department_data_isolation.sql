@@ -43,12 +43,16 @@ UPDATE livestock l
 INNER JOIN livestock_owners o ON o.legacy_farmer_id = l.farmer_id
 SET l.owner_id = o.id;
 
+ALTER TABLE livestock DROP FOREIGN KEY fk_livestock_farmer;
+
 ALTER TABLE livestock
-	DROP FOREIGN KEY fk_livestock_farmer,
 	DROP INDEX idx_livestock_farmer,
-	DROP COLUMN farmer_id,
-	DROP INDEX uq_livestock_owner_legacy_farmer,
+	DROP COLUMN farmer_id;
+
+ALTER TABLE livestock
 	ADD KEY idx_livestock_owner (owner_id),
 	ADD CONSTRAINT fk_livestock_owner FOREIGN KEY (owner_id) REFERENCES livestock_owners (id) ON DELETE RESTRICT;
 
-ALTER TABLE livestock_owners DROP COLUMN legacy_farmer_id;
+ALTER TABLE livestock_owners
+	DROP INDEX uq_livestock_owner_legacy_farmer,
+	DROP COLUMN legacy_farmer_id;
